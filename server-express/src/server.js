@@ -1,15 +1,19 @@
 require('dotenv').config();
 const express = require("express");
 const path = require('path');
+const morgan = require('morgan')
+
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
 // serve static files from ../build (needed for React)
 const cwd = process.cwd();
-const public = path.join(cwd, '..', 'public');
-console.log("public dir: ", public);
-app.use(express.static(public));
+// const public = path.join(cwd, '..', 'public');
+console.log("public dir: ", cwd + "/public");
+app.use(express.static(cwd + "/public"));
+app.use(morgan("dev"))
+
 
 // Do Not make a route for "/" or it will override public
 
