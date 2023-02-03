@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box
+}
+
+body {
+  margin:0;
+}
+
+ .nav{
+
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+
+.nav ul {
+padding:0;
+margin: 0;
+list-style: none; 
+display: flex;
+gap: 1rem;
+
+} 
+.nav a {
+  color: inherit;
+
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  padding: 5px;
+  margin: 2px;
+  width: 21em;
+  background-color: #eee;
+}
+
+li a {
+  color: grey;
+}
+
+li:hover {
+  background-color: darkolivegreen;
+  color: white;
+}
+
+li:hover a {
+  color: white;
+}

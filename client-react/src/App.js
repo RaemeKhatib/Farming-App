@@ -1,6 +1,14 @@
 import 'App.css';
 import axios from 'axios';
+import Navbar from 'Navbar';
+import Home from 'Home';
+import Harvest from 'Harvest';
+import Packing from 'Packing';
+import Shipping from 'Shipping';
+import Planting from 'Planting';
+import Login from 'Login';
 import { useEffect, useState } from 'react';
+import { Route, Routes } from "react-router-dom";
 
 export default function App() {
   const [status, setStatus] = useState({});
@@ -17,14 +25,30 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Hello React World</h1>
 
-      <section>
+      {/* <h1>Farming Community!!</h1> */}
+
+      <Navbar />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/planting" element={<Planting />} />
+          <Route path="/harvest" element={<Harvest />} />
+          <Route path="/shipping" element={<Shipping />} />
+          <Route path="/packing" element={<Packing />} />
+          <Route path="/login" element={<Login />} />
+
+        </Routes>
+      </div>
+
+
+
+      {/* <section>
         {!status.error &&
           <>API Version: <code>{status.version}</code></>}
         {status.error &&
           <>API Error: <code>{status.error}</code></>}
-      </section>
+      </section> */}
     </div>
   );
 }
