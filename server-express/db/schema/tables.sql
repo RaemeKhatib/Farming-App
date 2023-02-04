@@ -17,18 +17,18 @@ CREATE TABLE harvest (
   buyer_name VARCHAR(255) NOT NULL, -- name of each retailer who buys product 
   farm_worker VARCHAR(255) NOT NULL, -- name of person performing task
   tote_identifier INTEGER NOT NULL,  -- each tote/bin the fruit are put into when harvested has a number
-  fertilizer_pesticides_applied VARCHAR (255), NOT NULL, -- list of names of fertilizer or pesticides that need to be applied prior to harvest
-  product_unit VARCHAR(255) NOT NULL, -- list of product units like clamshell packaging, need to track units (same weight for each)
+  fertilizer_pesticides_applied VARCHAR (255) NOT NULL, -- list of names of fertilizer or pesticides that need to be applied prior to harvest
+  product_unit VARCHAR(255) NOT NULL -- list of product units like clamshell packaging, need to track units (same weight for each)
 );
 
 
 
 DROP TABLE IF EXISTS users CASCADE;
-CREATE TABLE user (
+CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   email VARCHAR(255) NOT NULL,
   admin BOOLEAN,
-  password VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
 );
 
 -- generate a harvest_code code from harvest table for each tote of fruit (i.e. field_identifier-tote_identifier-farm_worker_identifier-harvest_date)
