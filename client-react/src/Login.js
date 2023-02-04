@@ -24,9 +24,8 @@ export default function Login() {
   };
 
   return (
+        
     <>
-      <p>Login</p>
-
       <Box
         component="form" onSubmit={handleSubmit}
         sx={{
@@ -37,14 +36,14 @@ export default function Login() {
       >
         <TextField id="outlined-basic" label="Email" variant="outlined" value={email} onChange={(event) => setEmail(event.target.value)} />
         <TextField id="outlined-basic" label="Password" variant="outlined" value={password} onChange={(event) => setPassword(event.target.value)} />
-        <Button style={{ backgroundColor: 'red' }} variant="submit" onClick={handleSubmit}>Submit</Button>
+        <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleSubmit}>Submit</Button>
         
       </Box>
 
-      <Button style={{ backgroundColor: 'blue' }} variant="submit" onClick={handleUsers}>Users</Button>
-
+      <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleUsers}>Users</Button>
+  
     </>
-
+        
   );
 }
 

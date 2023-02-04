@@ -2,7 +2,7 @@ import { Link, useMatch, useResolvedPath } from "react-router-dom";
 
 export default function Navbar() {
   return (<nav className="nav">
-    <Link to="/" className="site-title">Farming-App</Link>
+    <Link to="/" className="site-title">Farming App</Link>
     <ul>
         <CustomLink to="/planting">Planting</CustomLink>
         <CustomLink to="/harvest">Harvest</CustomLink>  
@@ -21,11 +21,11 @@ function CustomLink({ to, children, ...props }) {
   const isActive = useMatch({ path: resolvedPath.pathname, end: true });
 
   return (
-    <li className={isActive ? "active" : ""}>
+    <ul className={isActive ? "active" : ""}>
       <Link to={to} {...props}>
         {children}
       </Link>
-    </li>
+    </ul>
 
   );
 }
