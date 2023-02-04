@@ -6,6 +6,7 @@ CREATE TABLE harvest (
   crop_type_harvest VARCHAR(255) NOT NULL, -- varietal of cranberry (i.e. Crimson Queen or Stevens)
   crop_type_planting VARCHAR(255) NOT NULL, -- varietal of cranberry (i.e. Crimson Queen or Stevens)
   field_identifier VARCHAR(255) NOT NULL,  --Codes assigned to each field (A4, A5, A7, A8)
+  field_identifier_harvest VARCHAR(255) NOT NULL,  --Codes assigned to each field (A4, A5, A7, A8)
   tote_weight INTEGER NOT NULL, -- weight of bin/tote of harvested berries
   date_fertilizer VARCHAR(255) NOT NULL, -- date when harvest takes place for the field
   date_harvest VARCHAR(255) NOT NULL, -- date when harvest takes place for the field
@@ -15,7 +16,8 @@ CREATE TABLE harvest (
   product_unit_shipped INTEGER NOT NULL, -- number of product units (i.e. for shipping to retailer)
   purchase_order_number INTEGER NOT NULL, -- Purchase order is created when retailer orders product. This is the number to identify it
   buyer_name VARCHAR(255) NOT NULL, -- name of each retailer who buys product 
-  farm_worker VARCHAR(255) NOT NULL, -- name of person performing task
+  farm_worker_identifier VARCHAR(255) NOT NULL, -- name of person performing task
+  farm_worker_identifier_harvesting VARCHAR(255) NOT NULL, -- name of person performing task
   tote_identifier INTEGER NOT NULL,  -- each tote/bin the fruit are put into when harvested has a number
   fertilizer_pesticides_applied VARCHAR (255) NOT NULL, -- list of names of fertilizer or pesticides that need to be applied prior to harvest
   product_unit VARCHAR(255) NOT NULL -- list of product units like clamshell packaging, need to track units (same weight for each)
