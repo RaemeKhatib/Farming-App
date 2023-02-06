@@ -13,23 +13,51 @@ export default function Shipping() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Form submitted with value: ", fieldIdentifier); //need to change later due to not being a value in shipping.js
+    console.log("Form submitted with values:", {
+      dateShipping, productUnitShipped, lotIdentifier, purchaseOrderNumber, buyerName
+    });
   };
 
-  // const handleUsers= (event) => {
+  // const handleSubmit = async (event) => {
   //   event.preventDefault();
-  //   axios.get("/test")
-  //   .then(users => {
-  //     console.log("Form submitted with value: ", users);
-  //   })
-    
+  
+  //   const query = `
+  //     INSERT INTO harvest (
+  //       date_shipping,
+  //       product_unit_shipped,
+  //       lot_identifier,
+  //       purchase_order_number,
+  //       buyer_name
+  //     ) VALUES ($1, $2, $3, $4, $5)
+  //   `;
+  
+  //   const values = [
+  //     dateShipping,
+  //     productUnitShipped,
+  //     lotIdentifier,
+  //     purchaseOrderNumber,
+  //     buyerName
+  //   ];
+  
+  //   try {
+  //     const response = await axios.post('/api/query', {
+  //       query,
+  //       values
+  //     });
+  
+  //     console.log('Data inserted successfully');
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
   // };
 
+  
+
   return (
-        
     <>
       <Box
-        component="form" onSubmit={handleSubmit}
+        component="form"
+        onSubmit={handleSubmit}
         sx={{
           '& > :not(style)': { m: 1, width: '20ch' },
         }}
@@ -37,25 +65,16 @@ export default function Shipping() {
         autoComplete="off"
       >
         <TextField id="outlined-basic" label="Date Shipping" variant="outlined" value={dateShipping} onChange={(event) => setDateShipping(event.target.value)} />
-
         <TextField id="outlined-basic" label="Product Unit Shipped" variant="outlined" value={productUnitShipped} onChange={(event) => setProductUnitShipped(event.target.value)} />
-
         <TextField id="outlined-basic" label="Lot Idenitfier" variant="outlined" value={lotIdentifier} onChange={(event) => setLotIdentifier(event.target.value)} />
-
         <TextField id="outlined-basic" label="Purchase Order Number" variant="outlined" value={purchaseOrderNumber} onChange={(event) => setPurchaseOrderNumber(event.target.value)} />
-
         <TextField id="outlined-basic" label="Buyer Name" variant="outlined" value={buyerName} onChange={(event) => setBuyerName(event.target.value)} />
-
-
-
-
         <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleSubmit}>Submit</Button>
-        
       </Box>
+      <img src="https://media.tenor.com/Y4HFduCpxiwAAAAd/goat-goat-lick.gif" alt="Organic Farms"/>
 
-      {/* <Button style={{ backgroundColor: 'blue' }} variant="submit" onClick={handleUsers}>Users</Button>
-   */}
+
+
     </>
-        
   );
 }
