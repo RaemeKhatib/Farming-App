@@ -14,7 +14,7 @@ export default function packing() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Form submitted with value: ", fieldIdentifier); //need to change later due to not being a value here
+    // console.log("Form submitted with value: ", fieldIdentifier); //need to change later due to not being a value here
   };
 
   // const handleUsers= (event) => {

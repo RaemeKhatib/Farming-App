@@ -2,7 +2,7 @@ import 'App.css';
 import axios from 'axios';
 import Navbar from 'Navbar';
 import Home from 'Home';
-import Harvest from 'Harvest';
+import Harvest from 'Harvesting';
 import Packing from 'Packing';
 import Shipping from 'Shipping';
 import Planting from 'Planting';
@@ -12,6 +12,16 @@ import { Route, Routes } from "react-router-dom";
 
 export default function App() {
   const [status, setStatus] = useState({});
+  // const [state, setState] = useState({
+  //   shippingItems: [],
+  //   plantingItems:[],
+  //   harvestingItems: []
+  // })
+
+  
+  // setState({...state, shippingItems})
+  
+
 
   useEffect(() => {
     axios.get('/api/status')
@@ -31,7 +41,7 @@ export default function App() {
       <Navbar />
       <div className="container">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home  />} />
           <Route path="/planting" element={<Planting />} />
           <Route path="/harvest" element={<Harvest />} />
           <Route path="/shipping" element={<Shipping />} />

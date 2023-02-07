@@ -62,7 +62,7 @@ export default function Shipping() {
         <TextField id="outlined-basic" label="Buyer Name" variant="outlined" value={buyerName} onChange={(event) => setBuyerName(event.target.value)} />
         <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleSubmit}>Submit</Button>
       </Box>
-      <img src="https://media.tenor.com/a5vNb_zRWmQAAAAC/giraffe-tongue.gif" alt="Organic Farms" />
+      <img src="https://31.media.tumblr.com/2e82d6737cf13e269efd0c0c910a5f51/tumblr_mhak83TgCm1rue90ro1_250.gif" alt="Organic Farms" />
 
 
 

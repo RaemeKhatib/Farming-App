@@ -4,9 +4,9 @@ const express = require("express");
 const path = require('path');
 const { getUsers } = require('../db/queries/test');
 const shippingRoutes = require('../routes/shipping');
-const shippingQueries = require('../db/queries/shipping');
 const bodyparser = require("body-parser");
 const plantingRoutes = require('../routes/planting');
+const harvestingRoutes = require('../routes/harvesting');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -21,8 +21,9 @@ app.use(bodyparser.json());
 // Do Not make a route for "/" or it will override public
 
 
-app.use("/shipping", shippingRoutes)
-app.use("/planting", plantingRoutes)
+app.use("/shipping", shippingRoutes);
+app.use("/planting", plantingRoutes);
+app.use("/harvesting", harvestingRoutes);
 
 
 

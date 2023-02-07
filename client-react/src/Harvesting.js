@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import React, { useState } from "react";
 import axios from 'axios';
 
-export default function Shipping() {
+export default function Harvesting() {
   const [farmWorkerHarvesting, setFarmWorkerHarvesting] = useState("");
   const [cropType, setCropType] = useState("");
   const [fieldIdentifierHarvest, setFieldIdentifierHarvest] = useState("");
@@ -14,17 +14,15 @@ export default function Shipping() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Form submitted with value: ", fieldIdentifier); //need to change later due to not being a value in shipping.js
+    axios.post("/harvesting", {
+      harvesting: {
+        farmWorkerHarvesting, cropType, fieldIdentifierHarvest, dateHarvest, toteIdentifier
+      }
+
+    });
   };
 
-  // const handleUsers= (event) => {
-  //   event.preventDefault();
-  //   axios.get("/test")
-  //   .then(users => {
-  //     console.log("Form submitted with value: ", users);
-  //   })
-    
-  // };
+
 
   return (
         

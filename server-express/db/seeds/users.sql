@@ -18,4 +18,13 @@ INSERT INTO harvest (
     fertilizer_pesticides_applied,
     farm_worker_identifier,
     crop_type_planting
-  )VALUES ('A5', 'Feb10', 'Chemical X', 'Adam Sandler', 'Goose Berries')
+  )VALUES ('A5', 'Feb10', 'Chemical X', 'Adam Sandler', 'Goose Berries');
+
+
+INSERT INTO harvest (
+    farm_worker_identifier_harvesting,
+    crop_type_harvest,
+    field_identifier_harvest,
+    date_harvest,
+    tote_identifier
+  )VALUES ('Sanchez', 'corn', 'B3', 'March 15', 5)
