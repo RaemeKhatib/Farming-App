@@ -5,7 +5,7 @@ const db = require('../connection');
 
 const getShipping = () => {
   console.log("getshipping")
-  return db.query('SELECT * FROM shipping;')
+  return db.query('SELECT * FROM ship;')
     .then(data => {
       return data.rows;
     });
@@ -13,7 +13,7 @@ const getShipping = () => {
 };
 
 const getShippingbyId = (id) => {
-  return db.query('SELECT * FROM shipping WHERE id = $1;', [id])
+  return db.query('SELECT * FROM ship WHERE id = $1;', [id])
     .then(result => {
       return result.rows[0];
     });
@@ -23,12 +23,12 @@ const getShippingbyId = (id) => {
 
 const createShipping = (shipping) => {
 
-  return db.query(`INSERT INTO shipping (buyer_Name,
-    shipping_Date,
-    lot_Id,
-    product_unit_shipped,
-    purchase_order_number
-  ) VALUES ($1, $2, $3, $4, $5) RETURNING *;`, [shipping.buyerName, shipping.dateShipping, shipping.lotIdentifier, shipping.productUnitShipped, shipping.purchaseOrderNumber])
+  return db.query(`INSERT INTO ship (
+    purchase_order_number,
+    buyer_name,
+    ship_date,
+    ship_amount
+  ) VALUES ($1, $2, $3, $4) RETURNING *;`, [shipping.purchase_order_number, shipping.buyer_name, shipping.ship_date, shipping.ship_amount])
     .then(result => {
       return result.rows[0];
     });

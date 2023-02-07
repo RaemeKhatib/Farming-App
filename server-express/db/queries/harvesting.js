@@ -6,6 +6,7 @@ const getHarvest = () => {
   console.log("Harvesting")
   return db.query('SELECT id, farm_worker_identifier_harvesting, crop_type_harvest, field_identifier_harvest, date_harvest, tote_identifier FROM harvest;')
     .then(data => {
+      console.log('harvest data', data)
       return data.rows;
     });
 
@@ -21,10 +22,15 @@ const getHarvestbyId = (id) => {
 
 
 const createHarvest = (harvesting) => {
+  console.log('harvesting update', harvesting)
 
-  return db.query(`UPDATE harvest 
-  SET farm_worker_identifier_harvesting = $1, crop_type_harvest = $2, field_identifier_harvest = $3, date_harvest = $4, tote_identifier = $5
-  WHERE id = $6 RETURNING *` , [harvesting.farmWorkerHarvesting, harvesting.cropType, harvesting.fieldIdentifierHarvest, harvesting.dateHarvest, harvesting.toteIdentifier, harvesting.id])
+  return db.query(`INSERT INTO harvest (
+    crop_type,
+    farm_worker,
+    date_harvest,
+    tote_id
+    
+  )VALUES ($1, $2, $3, $4) RETURNING *;`, [harvesting.crop_type, harvesting.farm_worker, harvesting.date_harvest, harvesting.tote_id])
   .then(result => {
     return result.rows[0];
   })

@@ -22,13 +22,13 @@ function CustomLink({ to, children, ...props }) {
 export default function Navbar() {
   const id = true
   return (<nav className="nav">
-    <Link to="/" className="site-title">Farming App</Link>
+    <Link to="/" className="site-title">Farm</Link>
     <ul>
-          <CustomLink to="/planting">Planting</CustomLink>
+          <CustomLink to="/planting">Plant</CustomLink>
         {id && <>
         <CustomLink to="/harvest">Harvest</CustomLink>  
-        <CustomLink to="/packing">Packing</CustomLink>
-        <CustomLink to="/shipping">Shipping</CustomLink>
+        <CustomLink to="/packing">Pack</CustomLink>
+        <CustomLink to="/shipping">Ship</CustomLink>
         </>}
         <CustomLink to="/login">Login</CustomLink>
 

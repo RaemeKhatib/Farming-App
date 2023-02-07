@@ -12,11 +12,11 @@ import { Route, Routes } from "react-router-dom";
 
 export default function App() {
   const [status, setStatus] = useState({});
-  // const [state, setState] = useState({
-  //   shippingItems: [],
-  //   plantingItems:[],
-  //   harvestingItems: []
-  // })
+  const [state, setState] = useState({
+    shippingItems: [],
+    plantingItems:[],
+    harvestingItems: [],
+  })
 
   
   // setState({...state, shippingItems})
@@ -41,7 +41,7 @@ export default function App() {
       <Navbar />
       <div className="container">
         <Routes>
-          <Route path="/" element={<Home  />} />
+          <Route path="/" element={<Home shippingItems={state.shippingItems} plantingItems={state.plantingItems} harvestingItems={state.harvestingItems} setState={setState}/>} />
           <Route path="/planting" element={<Planting />} />
           <Route path="/harvest" element={<Harvest />} />
           <Route path="/shipping" element={<Shipping />} />

@@ -7,9 +7,8 @@ const app = express();
 
 router.get("/", (req, res) => {
   harvestingQueries.getHarvest()
-
     .then(data => {
-      console.log("data", data);
+      console.log("harvesting data", data);
       res.json(data);
     });
 

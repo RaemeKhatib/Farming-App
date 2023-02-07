@@ -8,11 +8,10 @@ import React, { useState } from "react";
 import axios from 'axios';
 
 export default function Shipping() {
-  const [dateShipping, setDateShipping] = useState("");
-  const [productUnitShipped, setProductUnitShipped] = useState("");
-  const [lotIdentifier, setLotIdentifier] = useState("");
-  const [purchaseOrderNumber, setPurchaseOrderNumber] = useState("");
-  const [buyerName, setBuyerName] = useState("");
+  const [purchase_order_number, setPurchaseOrderNumber] = useState("");
+  const [buyer_name, setBuyerName] = useState("");
+  const [ship_date, setShipDate] = useState("");
+  const [ship_amount, setShipAmount] = useState("");
   const [value, setValue] = useState();
 
   const handleDateChange = (newValue) => {
@@ -24,17 +23,13 @@ export default function Shipping() {
 
     axios.post("/shipping", {
       shipping: {
-        dateShipping, productUnitShipped, lotIdentifier, purchaseOrderNumber, buyerName
+        purchase_order_number,
+        buyer_name,
+        ship_date,
+        ship_amount
       }
     });
-
-    console.log("Form submitted with values:", {
-      dateShipping, productUnitShipped, lotIdentifier, purchaseOrderNumber, buyerName
-    });
   };
-
-
-
 
   return (
     <>
@@ -56,15 +51,18 @@ export default function Shipping() {
             renderInput={(params) => <TextField {...params} />}
           />
         </LocalizationProvider>
-        <TextField id="outlined-basic" label="Product Unit Shipped" variant="outlined" value={productUnitShipped} onChange={(event) => setProductUnitShipped(event.target.value)} />
-        <TextField id="outlined-basic" label="Lot Idenitfier" variant="outlined" value={lotIdentifier} onChange={(event) => setLotIdentifier(event.target.value)} />
-        <TextField id="outlined-basic" label="Purchase Order Number" variant="outlined" value={purchaseOrderNumber} onChange={(event) => setPurchaseOrderNumber(event.target.value)} />
-        <TextField id="outlined-basic" label="Buyer Name" variant="outlined" value={buyerName} onChange={(event) => setBuyerName(event.target.value)} />
+        <TextField id="outlined-basic" label="Purchase Order Number" variant="outlined" value={purchase_order_number} onChange={(event) => setPurchaseOrderNumber(event.target.value)} /> 
+
+        <TextField id="outlined-basic" label="Buyer Name" variant="outlined" value={buyer_name} onChange={(event) => setBuyerName(event.target.value)} />
+
+        <TextField id="outlined-basic" label="Ship Date" variant="outlined" value={ship_date} onChange={(event) => setShipDate(event.target.value)} />
+
+        <TextField id="outlined-basic" label="Ship Amount" variant="outlined" value={ship_amount} onChange={(event) => setShipAmount(event.target.value)} />
+
         <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleSubmit}>Submit</Button>
+
       </Box>
-      <img src="https://31.media.tumblr.com/2e82d6737cf13e269efd0c0c910a5f51/tumblr_mhak83TgCm1rue90ro1_250.gif" alt="Organic Farms" />
-
-
+      <img src="https://media.tenor.com/7XMT6bz3Cf0AAAAM/cat-licking.gif" alt="Organic Farms" />
 
     </>
   );
