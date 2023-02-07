@@ -7,27 +7,23 @@ import axios from 'axios';
 export default function Planting() {
   const [fieldIdentifier, setFieldIdentifier] = useState("");
   const [dateFertilizer, setDateFertilizer] = useState("");
-  const [pesticidesApplied, setPesticidesApplied] = useState("");
   const [farmWorkerIdentifier, setFarmWorkerIdentifier] = useState("");
   const [fertilizerPesticide, setFertilizerPesticide] = useState("");
   const [cropType, setCropType] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Form submitted with value: ", fieldIdentifier);
+    axios.post("/planting", {
+      planting: {
+        fieldIdentifier, dateFertilizer, fertilizerPesticide, farmWorkerIdentifier, cropType
+      }
+
+    });
+
   };
 
-  // const handleUsers= (event) => {
-  //   event.preventDefault();
-  //   axios.get("/test")
-  //   .then(users => {
-  //     console.log("Form submitted with value: ", users);
-  //   })
-    
-  // };
-
   return (
-        
+
     <>
       <Box
         component="form" onSubmit={handleSubmit}
@@ -41,25 +37,19 @@ export default function Planting() {
 
         <TextField id="outlined-basic" label="Date Fertilizer" variant="outlined" value={dateFertilizer} onChange={(event) => setDateFertilizer(event.target.value)} />
 
-        <TextField id="outlined-basic" label="Pesticides Applied" variant="outlined" value={pesticidesApplied} onChange={(event) => setPesticidesApplied(event.target.value)} />
+        <TextField id="outlined-basic" label="Fertilizer or Pesticide Applied" variant="outlined" value={fertilizerPesticide} onChange={(event) => setFertilizerPesticide(event.target.value)} />
 
         <TextField id="outlined-basic" label="Farm Worker Identifier" variant="outlined" value={farmWorkerIdentifier} onChange={(event) => setFarmWorkerIdentifier(event.target.value)} />
 
-        <TextField id="outlined-basic" label="Fertilizer or Pesticide Applied" variant="outlined" value={fertilizerPesticide} onChange={(event) => setFertilizerPesticide(event.target.value)} />
-
         <TextField id="outlined-basic" label="Crop Type" variant="outlined" value={cropType} onChange={(event) => setCropType(event.target.value)} />
 
-
-
-
-
         <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleSubmit}>Submit</Button>
-        
+
       </Box>
 
       {/* <Button style={{ backgroundColor: 'blue' }} variant="submit" onClick={handleUsers}>Users</Button>
    */}
     </>
-        
+
   );
 }

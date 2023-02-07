@@ -27,10 +27,6 @@ export default function Shipping() {
         dateShipping, productUnitShipped, lotIdentifier, purchaseOrderNumber, buyerName
       }
     });
-    //   .then(users => {
-    //     console.log("Form submitted with value: ", users);
-    //   })
-
 
     console.log("Form submitted with values:", {
       dateShipping, productUnitShipped, lotIdentifier, purchaseOrderNumber, buyerName
@@ -66,7 +62,7 @@ export default function Shipping() {
         <TextField id="outlined-basic" label="Buyer Name" variant="outlined" value={buyerName} onChange={(event) => setBuyerName(event.target.value)} />
         <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleSubmit}>Submit</Button>
       </Box>
-      <img src="https://media.tenor.com/lWvN7t9VWxwAAAAC/tongue-out.gif" alt="Organic Farms" />
+      <img src="https://media.tenor.com/a5vNb_zRWmQAAAAC/giraffe-tongue.gif" alt="Organic Farms" />
 
 
 

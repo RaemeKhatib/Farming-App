@@ -6,6 +6,7 @@ const { getUsers } = require('../db/queries/test');
 const shippingRoutes = require('../routes/shipping');
 const shippingQueries = require('../db/queries/shipping');
 const bodyparser = require("body-parser");
+const plantingRoutes = require('../routes/planting');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -21,6 +22,11 @@ app.use(bodyparser.json());
 
 
 app.use("/shipping", shippingRoutes)
+app.use("/planting", plantingRoutes)
+
+
+
+
 
 app.get("/api/status", (req, res) => {
   res.json({ version: "1.01" });
