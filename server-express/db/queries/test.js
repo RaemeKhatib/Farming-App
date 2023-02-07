@@ -1,6 +1,7 @@
 const db = require('../connection');
 
 const getUsers = () => {
+  console.log("GetUsers")
   return db.query('SELECT * FROM users;')
     .then(data => {
       return data.rows;
@@ -8,5 +9,7 @@ const getUsers = () => {
 
 
 };
+
+
 
 module.exports = { getUsers };

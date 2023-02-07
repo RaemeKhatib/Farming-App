@@ -42,9 +42,9 @@ export default function Login() {
       </Box>
 
       <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleUsers}>Users</Button>
-        <body className="login">
+        <div className="login">
 
-        </body>
+        </div>
         
     </>
         
