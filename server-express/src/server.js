@@ -7,6 +7,7 @@ const shippingRoutes = require('../routes/shipping');
 const bodyparser = require("body-parser");
 const plantingRoutes = require('../routes/planting');
 const harvestingRoutes = require('../routes/harvesting');
+const packingRoutes = require('../routes/packing');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -20,11 +21,10 @@ app.use(bodyparser.json());
 
 // Do Not make a route for "/" or it will override public
 
-
-app.use("/shipping", shippingRoutes);
 app.use("/planting", plantingRoutes);
 app.use("/harvesting", harvestingRoutes);
-
+app.use("/packing", packingRoutes);
+app.use("/shipping", shippingRoutes);
 
 
 
@@ -33,14 +33,9 @@ app.get("/api/status", (req, res) => {
   res.json({ version: "1.01" });
 });
 
-
-
 // app.use(function(req, res) {
 //   res.status(404);
 // });
-
-
-
 
 app.get("/test", (req, res) => {
   console.log("I NEVER KNOW WHAT IM DOING DAVID");

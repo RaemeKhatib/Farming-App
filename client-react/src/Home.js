@@ -5,6 +5,7 @@ import axios from "axios";
 export default function Home({
   plantingItems,
   harvestingItems,
+  packingItems,
   shippingItems,
   setState
 }) {
@@ -12,39 +13,7 @@ export default function Home({
   // const [plantingItems, setPlantingItems] = useState([]);
   // const [harvestingItems, setHarvestingItems] = useState([]);
   
-  useEffect(() => {
-    axios.get('/planting')
-      .then((res) => {
-        console.log('planting', res.data);
-        setState(prev => ({...prev, plantingItems: res.data}))
-        // setPlantingItems(res.data);
-      })
-      .catch((err) => {
-        console.log(err.message)
-        // setPlantingItems({ error: err.message });
-      });
-      axios.get('/harvesting')
-      .then((res) => {
-        console.log('harvesting', res.data);
-        setState(prev => ({...prev, harvestingItems: res.data}))
-        // setHarvestingItems(res.data);
-      })
-      .catch((err) => {
-        console.log(err.message)
-        // setHarvestingItems({ error: err.message });
-      });
-      axios.get('/shipping')
-      .then((res) => {
-        console.log('shipping', res.data);
-        setState(prev => ({...prev, shippingItems: res.data})) // just update shippingItems and leave plantingItems, harvestingItems, the same
-        // setShippingItems(res.data);
-      })
-      .catch((err) => {
-        console.log(err.message)
-        // setShippingItems({ error: err.message });
-      });
-  }, []);
-
+  
   const plantingDisplay = plantingItems.map(item => {
     return (
       <Fragment key={item.id}>
@@ -66,6 +35,17 @@ export default function Home({
       </ Fragment>
     );
   });
+
+  const packingDisplay = packingItems.map(item => {
+    return (
+      <Fragment key={item.id}>
+        <div>Packing Date: {item.date_pack}</div>
+        <div>product Unit: {item.product_unit}</div>
+        <div>Product Unit Amount: {item.product_unit_amount}</div>
+        <div>Farm Worker: {item.farm_worker}</div>
+      </ Fragment>
+    );
+  }); 
 
   const shippingDisplay = shippingItems.map(item => {
     return (
@@ -90,6 +70,9 @@ export default function Home({
 
       <p>___________________Harvest___________________</p>
       {harvestingDisplay}
+
+      <p>___________________Pack___________________</p>
+      {packingDisplay}
 
       <p>___________________Ship___________________</p>
       {shippingDisplay}

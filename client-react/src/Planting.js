@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import React, { useState } from "react";
 import axios from 'axios';
 
-export default function Planting() {
+export default function Planting(props) {
   const [field_id, setFieldId] = useState("");
   const [crop_type, setCropType] = useState("");
   const [date_fertilized, setDateFertilized] = useState("");
@@ -16,7 +16,9 @@ export default function Planting() {
       planting: {
         field_id, crop_type, date_fertilized, fertilizer_pesticides_applied
       }
-
+    }).then(response => {
+      console.log("Krista was HERE!!!!")
+      props.addItemToState("plantingItems", response.data)
     });
 
   };

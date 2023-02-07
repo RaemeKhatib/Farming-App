@@ -6,28 +6,23 @@ import React, { useState } from "react";
 import axios from 'axios';
 
 export default function packing() {
-  const [datePacking, setDatePacking] = useState("");
-  const [productUnit, setProductUnit] = useState("");
-  const [productUnitPacked, setProductUnitPacked] = useState("");
-  const [farmerWorkerIdentifier, setfarmerWorkerIdentifier] = useState("");
-  const [lotIdentifier, setLotIdentifier] = useState("");
+  const [date_pack, setDatePack] = useState("");
+  const [product_unit, setProductUnit] = useState("");
+  const [product_unit_amount, setProductUnitAmount] = useState("");
+  const [farm_worker, setFarmWorker] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log("Form submitted with value: ", fieldIdentifier); //need to change later due to not being a value here
+    axios.post("/packing", {
+      packing: {
+        date_pack, product_unit, product_unit_amount, farm_worker
+      }
+    });
   };
 
-  // const handleUsers= (event) => {
-  //   event.preventDefault();
-  //   axios.get("/test")
-  //   .then(users => {
-  //     console.log("Form submitted with value: ", users);
-  //   })
-    
-  // };
 
   return (
-        
+
     <>
       <Box
         component="form" onSubmit={handleSubmit}
@@ -37,26 +32,21 @@ export default function packing() {
         noValidate
         autoComplete="off"
       >
-        <TextField id="outlined-basic" label="Date Packing" variant="outlined" value={datePacking} onChange={(event) => setDatePacking(event.target.value)} />
+        <TextField id="outlined-basic" label="Packing Date" variant="outlined" value={date_pack} onChange={(event) => setDatePack(event.target.value)} />
 
-        <TextField id="outlined-basic" label="Product Unit" variant="outlined" value={productUnit} onChange={(event) => setProductUnit(event.target.value)} />
+        <TextField id="outlined-basic" label="Product Unit" variant="outlined" value={product_unit} onChange={(event) => setProductUnit(event.target.value)} />
 
-        <TextField id="outlined-basic" label="Product Unit Packed" variant="outlined" value={productUnitPacked} onChange={(event) => setProductUnitPacked(event.target.value)} />
+        <TextField id="outlined-basic" label="Product Unit Amount" variant="outlined" value={product_unit_amount} onChange={(event) => setProductUnitAmount(event.target.value)} />
 
-        <TextField id="outlined-basic" label="Farmer Worker Identifier" variant="outlined" value={farmerWorkerIdentifier} onChange={(event) => setFarmerWorkerIdentifier(event.target.value)} />
-
-        <TextField id="outlined-basic" label="Lot Identifier" variant="outlined" value={lotIdentifier} onChange={(event) => setLotIdentifier(event.target.value)} />
-
-
-
+        <TextField id="outlined-basic" label="Farmer Worker" variant="outlined" value={farm_worker} onChange={(event) => setFarmWorker(event.target.value)} />
 
         <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleSubmit}>Submit</Button>
-        
+
       </Box>
 
       {/* <Button style={{ backgroundColor: 'blue' }} variant="submit" onClick={handleUsers}>Users</Button>
    */}
     </>
-        
+
   );
 }

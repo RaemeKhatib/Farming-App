@@ -45,11 +45,6 @@ router.get("/", (req, res) => {
 // });
 
 
-
-
-
-
-
 router.post('/', (req, res) => {
   console.log('yoooo', req.body)
   shippingQueries.createShipping(req.body.shipping)

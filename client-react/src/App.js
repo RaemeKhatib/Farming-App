@@ -13,14 +13,65 @@ import { Route, Routes } from "react-router-dom";
 export default function App() {
   const [status, setStatus] = useState({});
   const [state, setState] = useState({
-    shippingItems: [],
-    plantingItems:[],
-    harvestingItems: [],
-  })
 
-  
+    plantingItems: [],
+    harvestingItems: [],
+    packingItems: [],
+    shippingItems: []
+  });
+
+  const addItemToState = (key, value) => {
+    setState((prev) => {
+      return { ...prev, [key]: [...state[key], value] };
+    });
+  };
+
   // setState({...state, shippingItems})
-  
+  useEffect(() => {
+    axios.get('/planting')
+      .then((res) => {
+        console.log('planting', res.data);
+        setState(prev => ({ ...prev, plantingItems: res.data }));
+        // setPlantingItems(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+        // setPlantingItems({ error: err.message });
+      });
+
+    axios.get('/harvesting')
+      .then((res) => {
+        console.log('harvesting', res.data);
+        setState(prev => ({ ...prev, harvestingItems: res.data }));
+        // setHarvestingItems(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+        // setHarvestingItems({ error: err.message });
+      });
+
+    axios.get('/packing')
+      .then((res) => {
+        console.log('packing', res.data);
+        setState(prev => ({ ...prev, packingItems: res.data }));
+        // setPackingItems(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+        // setPackingItems({ error: err.message });
+      });
+
+    axios.get('/shipping')
+      .then((res) => {
+        console.log('shipping', res.data);
+        setState(prev => ({ ...prev, shippingItems: res.data })); // just update shippingItems and leave plantingItems, harvestingItems, the same
+        // setShippingItems(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+        // setShippingItems({ error: err.message });
+      });
+  }, []);
 
 
   useEffect(() => {
@@ -41,16 +92,25 @@ export default function App() {
       <Navbar />
       <div className="container">
         <Routes>
-          <Route path="/" element={<Home shippingItems={state.shippingItems} plantingItems={state.plantingItems} harvestingItems={state.harvestingItems} setState={setState}/>} />
-          <Route path="/planting" element={<Planting />} />
-          <Route path="/harvest" element={<Harvest />} />
+          <Route path="/" element={<Home
+            shippingItems={state.shippingItems}
+            plantingItems={state.plantingItems}
+            harvestingItems={state.harvestingItems}
+            packingItems={state.packingItems}
+            setState={setState} />} />
+          <Route path="/planting" element={<Planting
+            addItemToState={addItemToState} />} />
+          <Route path="/harvest" element={
+            <Harvest
+              plantingItems={state.plantingItems}
+              harvestingItems={state.harvestingItems}
+            />} />
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/packing" element={<Packing />} />
           <Route path="/login" element={<Login />} />
 
         </Routes>
       </div>
-
 
 
       {/* <section>

@@ -5,7 +5,7 @@ const db = require('../connection');
 
 const getShipping = () => {
   console.log("getshipping")
-  return db.query('SELECT * FROM ship;')
+  return db.query(`SELECT * FROM ship;`)
     .then(data => {
       return data.rows;
     });
@@ -13,7 +13,7 @@ const getShipping = () => {
 };
 
 const getShippingbyId = (id) => {
-  return db.query('SELECT * FROM ship WHERE id = $1;', [id])
+  return db.query(`SELECT * FROM ship WHERE id = $1;`, [id])
     .then(result => {
       return result.rows[0];
     });
