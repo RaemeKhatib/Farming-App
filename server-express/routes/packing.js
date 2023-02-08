@@ -30,7 +30,10 @@ router.get("/", (req, res) => {
     packingQueries.createPacking(req.body.packing)
       .then((packing) => {
         console.log(packing);
-        res.send("Your Packing Information has been completed.");
+        res.send(packing);
+      }).catch((err) => {
+        res.status(500)
+       res.send({ error: err.message });
       });
   });
   

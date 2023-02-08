@@ -104,9 +104,16 @@ export default function App() {
             <Harvest
               plantingItems={state.plantingItems}
               harvestingItems={state.harvestingItems}
+              addItemToState={addItemToState}
             />} />
-          <Route path="/packing" element={<Packing />} />
-          <Route path="/shipping" element={<Shipping />} />
+          <Route path="/packing" element={
+          <Packing
+            plantingItems={state.plantingItems}
+            addItemToState={addItemToState} />} />
+          <Route path="/shipping" element={
+          <Shipping
+            plantingItems={state.plantingItems}
+            addItemToState={addItemToState} />} />
           <Route path="/login" element={<Login />} />
 
         </Routes>

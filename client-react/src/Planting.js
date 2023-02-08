@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'; 
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 export default function Planting(props) {
   const [field_id, setFieldId] = useState("");
@@ -14,7 +14,7 @@ export default function Planting(props) {
   const [listOfPlants, setListOfPlants] = useState([]);
 
   useEffect(() => {
-    console.log('asdfasfd', props);
+    console.log('props', props);
     axios.get('/planting')
       .then((res) => {
         setListOfPlants(res.data);
@@ -22,7 +22,7 @@ export default function Planting(props) {
       .catch((err) => {
         console.log(err);
       });
-  }, [])
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,17 +30,19 @@ export default function Planting(props) {
       planting: {
         field_id, crop_type, date_fertilized, fertilizer_pesticides_applied
       }
-    }
-    ).then(response => {
+    }).then(response => {
       console.log("Krista was HERE!!!!");
       props.addItemToState("plantingItems", response.data);
-      setListOfPlants((prev) => [...prev], response.data)
-    });  };
+      setListOfPlants((prev) => [...prev, response.data] );
+  
+    });
+  }
 
-    return (
 
-      <>
-         <Box
+  return (
+
+    <>
+      <Box
         component="form" onSubmit={handleSubmit}
         sx={{
           '& > :not(style)': { m: 1, width: '20ch' },
@@ -61,42 +63,41 @@ export default function Planting(props) {
       </Box>
 
 
-        <Box mt={4}>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>ID</TableCell>
-                  <TableCell>Field ID</TableCell>
-                  <TableCell align="right">Crop Type</TableCell>
-                  <TableCell align="right">Date Fertilized</TableCell>
-                  <TableCell align="right">Type of Fertilizer</TableCell>
+      <Box mt={4}>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell>Field ID</TableCell>
+                <TableCell align="right">Crop Type</TableCell>
+                <TableCell align="right">Date Fertilized</TableCell>
+                <TableCell align="right">Type of Fertilizer</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {listOfPlants.map((row) => (
+                <TableRow
+                  key={row.id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.id}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {row.field_id}
+                  </TableCell>
+                  <TableCell align="right">{row.crop_type}</TableCell>
+                  <TableCell align="right">{row.date_fertilized}</TableCell>
+                  <TableCell align="right">{row.fertilizer_pesticides_applied}</TableCell>
                 </TableRow>
-              </TableHead>
-              <TableBody>
-                {listOfPlants.map((row) => (
-                  <TableRow
-                    key={row.id}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {row.id}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {row.field_id}
-                    </TableCell>
-                    <TableCell align="right">{row.crop_type}</TableCell>
-                    <TableCell align="right">{row.date_fertilized}</TableCell>
-                    <TableCell align="right">{row.fertilizer_pesticides_applied}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Box>
-        {/* <Button style={{ backgroundColor: 'blue' }} variant="submit" onClick={handleUsers}>Users</Button>
-   */}
-      </>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+    
+    </>
 
-    );
-  };
+  );
+};
