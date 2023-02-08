@@ -12,7 +12,6 @@ import Select from '@mui/material/Select';
 
 
 export default function Harvesting(props) {
-  const [crop_type, setCropType] = useState("");
   const [farm_worker, setFarmWorker] = useState("");
   const [date_harvest, setDateHarvest] = useState("");
   const [tote_id, setToteId] = useState("");
@@ -23,7 +22,7 @@ export default function Harvesting(props) {
     event.preventDefault();
     axios.post("/harvesting", {
       harvesting: {
-       plant_id, crop_type, farm_worker, date_harvest, tote_id
+       plant_id, farm_worker, date_harvest, tote_id
       }
 
     });
@@ -62,9 +61,6 @@ export default function Harvesting(props) {
        {cropDisplay}
       </Select>
     </FormControl>
-
-
-        <TextField id="outlined-basic" label="Crop Type" variant="outlined" value={crop_type} onChange={(event) => setCropType(event.target.value)} />
 
         <TextField id="outlined-basic" label="Farm Worker" variant="outlined" value={farm_worker} onChange={(event) => setFarmWorker(event.target.value)} />
 

@@ -4,7 +4,7 @@ const db = require('../connection');
 
 const getHarvest = () => {
   console.log("Harvesting")
-  return db.query(`SELECT id, crop_type, farm_worker, date_harvest, tote_id FROM harvest;`)
+  return db.query(`SELECT id, farm_worker, date_harvest, tote_id FROM harvest;`)
     .then(data => {
       console.log('harvest data', data)
       return data.rows;
@@ -26,12 +26,11 @@ const createHarvest = (harvesting) => {
 
   return db.query(`INSERT INTO harvest (
     plant_id,
-    crop_type,
     farm_worker,
     date_harvest,
     tote_id
     
-  )VALUES ($1, $2, $3, $4, $5) RETURNING *;`, [harvesting.plant_id, harvesting.crop_type, harvesting.farm_worker, harvesting.date_harvest, harvesting.tote_id])
+  )VALUES ($1, $2, $3, $4) RETURNING *;`, [harvesting.plant_id, harvesting.farm_worker, harvesting.date_harvest, harvesting.tote_id])
   .then(result => {
     return result.rows[0];
   })

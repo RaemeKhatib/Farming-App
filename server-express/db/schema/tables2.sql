@@ -21,7 +21,6 @@ DROP TABLE IF EXISTS harvest CASCADE;
 CREATE TABLE harvest (
   id SERIAL PRIMARY KEY,
   plant_id INTEGER REFERENCES plant(id) ON DELETE CASCADE,
-  crop_type VARCHAR(255),
   farm_worker VARCHAR(255),
   date_harvest VARCHAR(255),
   tote_id INTEGER
