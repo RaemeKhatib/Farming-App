@@ -1,5 +1,5 @@
 .App {
-  /* margin: 1em; */
+  margin: 1em;
 }
 
 h4 {
@@ -13,7 +13,7 @@ h4:empty:before {
 
 ul {
   list-style: none;
-  padding-left: 0;
+  padding-left: 0px;
 }
 
 li {
@@ -37,3 +37,6 @@ li:hover a {
 }
 
 
+.container {
+  padding-left: 120px;
+}

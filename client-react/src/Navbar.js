@@ -23,7 +23,7 @@ export default function Navbar() {
   const id = true
   return (<nav className="nav">
     <Link to="/" className="site-title">Farm</Link>
-    <ul>
+    <ul className="nav-layout">
           <CustomLink to="/planting">Plant</CustomLink>
         {id && <>
         <CustomLink to="/harvest">Harvest</CustomLink>  
