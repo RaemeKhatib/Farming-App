@@ -29,6 +29,7 @@ CREATE TABLE harvest (
 DROP TABLE IF EXISTS pack CASCADE;
 CREATE TABLE pack (
   id SERIAL PRIMARY KEY,
+  plant_id INTEGER REFERENCES plant(id) ON DELETE CASCADE,
   harvest_id INTEGER REFERENCES harvest(id) ON DELETE CASCADE,
   date_pack VARCHAR(255),
   product_unit VARCHAR(255), --Type of packaging
@@ -39,6 +40,7 @@ CREATE TABLE pack (
 DROP TABLE IF EXISTS ship CASCADE;
 CREATE TABLE ship (
   id SERIAL PRIMARY KEY,
+  plant_id INTEGER REFERENCES plant(id) ON DELETE CASCADE,
   pack_id INTEGER REFERENCES pack(id) ON DELETE CASCADE,
   purchase_order_number INTEGER,
   buyer_name VARCHAR(255),

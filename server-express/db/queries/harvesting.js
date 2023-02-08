@@ -4,7 +4,7 @@ const db = require('../connection');
 
 const getHarvest = () => {
   console.log("Harvesting")
-  return db.query(`SELECT id, farm_worker, date_harvest, tote_id FROM harvest;`)
+  return db.query(`SELECT id, plant_id, farm_worker, date_harvest, tote_id FROM harvest;`)
     .then(data => {
       console.log('harvest data', data)
       return data.rows;

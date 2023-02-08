@@ -62,7 +62,7 @@ export default function Shipping() {
         <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleSubmit}>Submit</Button>
 
       </Box>
-      <img src="https://thumbs.gfycat.com/CheapThunderousIndianglassfish.webp" alt="Organic Farms" />
+      <img src="https://media.tenor.com/VbRh5TkVyBAAAAAd/hippo-baby.gif.webp" alt="Organic Farms" />
 
     </>
   );

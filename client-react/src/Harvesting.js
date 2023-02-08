@@ -32,7 +32,7 @@ export default function Harvesting(props) {
     return (
       <MenuItem key={item.id} 
         value={item.id}>
-        {item.crop_type}
+        {item.field_id} {item.crop_type}
       </ MenuItem>
     );
   });

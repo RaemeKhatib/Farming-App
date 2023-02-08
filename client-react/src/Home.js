@@ -1,5 +1,6 @@
-import { useEffect, Fragment, useState } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import axios from "axios";
+import { Box, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'; 
 
 
 export default function Home({
@@ -46,8 +47,7 @@ export default function Home({
       </ Fragment>
     );
   }); 
-
-  const shippingDisplay = shippingItems.map(item => {
+const shippingDisplay = shippingItems.map(item => {
     return (
       <Fragment key={item.id}>
         <div>Purchase Order Number: {item.purchase_order_number}</div>
@@ -58,10 +58,61 @@ export default function Home({
     );
   });
 
+  console.log("planting", plantingItems[0]);
+  console.log('harvesting', harvestingItems[0]);
 
   return (
     <>
-      <p>___________________Home___________________</p>
+      <Box mb={4}>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell>Field ID</TableCell>
+                <TableCell align="right">Crop Type</TableCell>
+                <TableCell align="right">Date Fertilized</TableCell>
+                <TableCell align="right">Harvest</TableCell>
+                <TableCell align="right">Pack</TableCell>
+                <TableCell align="right">Ship</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {plantingItems.map((plantItem) => (
+                <TableRow
+                  key={plantItem.id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">{plantItem.id}</TableCell>
+                  <TableCell component="th" scope="row">{plantItem.field_id}</TableCell>
+                  <TableCell align="right">{plantItem.crop_type}</TableCell>
+                  <TableCell align="right">{plantItem.date_fertilized}</TableCell>
+
+                  <TableCell align="right">
+                    <Button 
+                      variant='contained' color='success'
+                      disabled={harvestingItems.find(x => x.plant_id == plantItem.id) ? true : false }
+                      >   
+                      Harvest
+                    </Button>
+                  </TableCell>
+                  <TableCell align="right">
+                    <Button variant='contained' color='info'>   
+                      Pack
+                    </Button>
+                  </TableCell>
+                  <TableCell align="right">
+                    <Button variant='contained' color='secondary'>   
+                      Ship
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+      {/* <p>___________________Home___________________</p>
 
 
 
@@ -75,10 +126,7 @@ export default function Home({
       {packingDisplay}
 
       <p>___________________Ship___________________</p>
-      {shippingDisplay}
+      {shippingDisplay} */}
     </>
   );
 }
-
-
-
