@@ -14,8 +14,8 @@ router.get("/", (req, res) => {
 
 });
 
-router.get("/:id", (req, res) => {
-  harvestingQueries.getHarvestbyId(req.params.id)
+router.get("/harvest/:plant_id", (req, res) => {
+  harvestingQueries.getHarvestbyId(req.params.plant_id)
 
     .then(data => {
       console.log("data", data);

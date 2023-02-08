@@ -9,12 +9,15 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { MenuItem,Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { useParams } from "react-router-dom"
+
+
 
 export default function Harvesting(props) {
+  const {plant_id} = useParams()
   const [farm_worker, setFarmWorker] = useState("");
   const [date_harvest, setDateHarvest] = useState("");
   const [tote_id, setToteId] = useState("");
-  const [plant_id, setPlantId] = useState("");
   //need a button to generate a harvest code here on page
 
   const [listOfHarvests, setListOfHarvests] = useState([]);
@@ -39,7 +42,7 @@ export default function Harvesting(props) {
       }
 
     }).then(response => {
-      console.log("Raeme was HERE!!!!");
+      console.log("RESPONSE / DATA!!!!", response.data);
       props.addItemToState("harvestingItems", response.data);
       setListOfHarvests((prev) => [...prev, response.data]);
     });
@@ -68,18 +71,6 @@ export default function Harvesting(props) {
         autoComplete="off"
       >
 
-        <FormControl fullWidth>
-          <InputLabel id="plant">Crop</InputLabel>
-          <Select
-            labelId="plant"
-            id="plant-select"
-            value={plant_id}
-            label="Plant"
-            onChange={(event) => setPlantId(event.target.value)}
-          >
-            {cropDisplay}
-          </Select>
-        </FormControl>
 
         <TextField id="outlined-basic" label="Farm Worker" variant="outlined" value={farm_worker} onChange={(event) => setFarmWorker(event.target.value)} />
 
@@ -92,39 +83,7 @@ export default function Harvesting(props) {
 
       </Box>
 
-      <Box mt={4}>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Field ID</TableCell>
-                <TableCell align="right">Farm Worker</TableCell>
-                <TableCell align="right">Date of Harvest</TableCell>
-                <TableCell align="right">Tote ID</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {listOfHarvests.map((row) => (
-                <TableRow
-                  key={row.id}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {row.id}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {row.field_id}
-                  </TableCell>
-                  <TableCell align="right">{row.farm_worker}</TableCell>
-                  <TableCell align="right">{row.date_harvest}</TableCell>
-                  <TableCell align="right">{row.tote_id}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
+      
 
     </>
 

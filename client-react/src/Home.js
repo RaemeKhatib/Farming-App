@@ -1,7 +1,7 @@
 import React, { useEffect, Fragment, useState } from "react";
 import axios from "axios";
-import { Box, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'; 
-
+import { Box, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Link } from "react-router-dom";
 
 export default function Home({
   plantingItems,
@@ -13,8 +13,8 @@ export default function Home({
   // const [shippingItems, setShippingItems] = useState([]);
   // const [plantingItems, setPlantingItems] = useState([]);
   // const [harvestingItems, setHarvestingItems] = useState([]);
-  
-  
+
+
   const plantingDisplay = plantingItems.map(item => {
     return (
       <Fragment key={item.id}>
@@ -46,8 +46,8 @@ export default function Home({
         <div>Farm Worker: {item.farm_worker}</div>
       </ Fragment>
     );
-  }); 
-const shippingDisplay = shippingItems.map(item => {
+  });
+  const shippingDisplay = shippingItems.map(item => {
     return (
       <Fragment key={item.id}>
         <div>Purchase Order Number: {item.purchase_order_number}</div>
@@ -68,7 +68,7 @@ const shippingDisplay = shippingItems.map(item => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
+                <TableCell></TableCell>
                 <TableCell>Field ID</TableCell>
                 <TableCell align="right">Crop Type</TableCell>
                 <TableCell align="right">Date Fertilized</TableCell>
@@ -83,26 +83,35 @@ const shippingDisplay = shippingItems.map(item => {
                   key={plantItem.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">{plantItem.id}</TableCell>
+                  <TableCell component="th" scope="row">
+                    <Link to={`/summary/${plantItem.id}`}>
+                      <Button
+                        variant='contained' color='primary'
+                      >
+                        Summary
+                      </Button>
+                    </Link></TableCell>
                   <TableCell component="th" scope="row">{plantItem.field_id}</TableCell>
                   <TableCell align="right">{plantItem.crop_type}</TableCell>
                   <TableCell align="right">{plantItem.date_fertilized}</TableCell>
 
                   <TableCell align="right">
-                    <Button 
-                      variant='contained' color='success'
-                      disabled={harvestingItems.find(x => x.plant_id == plantItem.id) ? true : false }
-                      >   
-                      Harvest
-                    </Button>
+                    <Link to={`/harvest/${plantItem.id}`}>
+                      <Button
+                        variant='contained' color='success'
+                        disabled={harvestingItems.find(x => x.plant_id == plantItem.id) ? true : false}
+                      >
+                        Harvest
+                      </Button>
+                    </Link>
                   </TableCell>
                   <TableCell align="right">
-                    <Button variant='contained' color='info'>   
+                    <Button variant='contained' color='info'>
                       Pack
                     </Button>
                   </TableCell>
                   <TableCell align="right">
-                    <Button variant='contained' color='secondary'>   
+                    <Button variant='contained' color='secondary'>
                       Ship
                     </Button>
                   </TableCell>

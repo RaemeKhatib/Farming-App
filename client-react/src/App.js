@@ -6,6 +6,7 @@ import Harvest from 'Harvesting';
 import Packing from 'Packing';
 import Shipping from 'Shipping';
 import Planting from 'Planting';
+import Summary from 'Summary';
 import Login from 'Login';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from "react-router-dom";
@@ -100,21 +101,23 @@ export default function App() {
             setState={setState} />} />
           <Route path="/planting" element={<Planting
             addItemToState={addItemToState} />} />
-          <Route path="/harvest" element={
+          <Route path="/harvest/:plant_id" element={
             <Harvest
               plantingItems={state.plantingItems}
               harvestingItems={state.harvestingItems}
               addItemToState={addItemToState}
             />} />
-          <Route path="/packing" element={
+          <Route path="/packing/:plant_id" element={
           <Packing
             plantingItems={state.plantingItems}
             addItemToState={addItemToState} />} />
-          <Route path="/shipping" element={
+          <Route path="/shipping/:plant_id" element={
           <Shipping
             plantingItems={state.plantingItems}
             addItemToState={addItemToState} />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/summary/:plant_id" element={<Summary />} />
+
 
         </Routes>
       </div>
