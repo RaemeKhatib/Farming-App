@@ -1,7 +1,7 @@
 const express = require("express");
-const router = express.Router()
+const router = express.Router();
 const harvestingQueries = require('../db/queries/harvesting');
-const harvestingRoutes = require('../routes/harvesting')
+const harvestingRoutes = require('../routes/harvesting');
 const app = express();
 
 
@@ -24,13 +24,15 @@ router.get("/:id", (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  console.log('HEY Harvesting', req.body)
+  console.log('HEY Harvesting', req.body);
   harvestingQueries.createHarvest(req.body.harvesting)
     .then((harvesting) => {
       console.log(harvesting);
-      res.send("Your harvesting Information has been added.");
+      res.send(harvesting);
+    }).catch((err) => {
+      res.status(500);
+      res.send({ error: err.message });
     });
 });
 
-
-module.exports = router
+module.exports = router;

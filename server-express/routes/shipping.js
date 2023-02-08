@@ -50,7 +50,10 @@ router.post('/', (req, res) => {
   shippingQueries.createShipping(req.body.shipping)
     .then((shipping) => {
       console.log(shipping);
-      res.send("Your Shipping Information has been added.");
+      res.send(shipping);
+    }).catch((err) => {
+      res.status(500)
+     res.send({ error: err.message });
     });
 });
 
