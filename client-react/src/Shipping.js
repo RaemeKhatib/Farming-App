@@ -7,8 +7,10 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import React, { useState, useEffect } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 export default function Shipping(props) {
+  const { plant_id } = useParams();
   const [purchase_order_number, setPurchaseOrderNumber] = useState("");
   const [buyer_name, setBuyerName] = useState("");
   const [ship_date, setShipDate] = useState("");
@@ -37,6 +39,7 @@ export default function Shipping(props) {
 
     axios.post("/shipping", {
       shipping: {
+        plant_id,
         purchase_order_number,
         buyer_name,
         ship_date,

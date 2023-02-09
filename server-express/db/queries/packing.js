@@ -24,11 +24,12 @@ const createPacking = (packing) => {
   console.log('packing update', packing)
 
   return db.query(`INSERT INTO pack (
+    plant_id,
     date_pack,
     product_unit,
     product_unit_amount,
     farm_worker
-  )VALUES ($1, $2, $3, $4) RETURNING *;`, [packing.date_pack, packing.product_unit, packing.product_unit_amount, packing.farm_worker])
+  )VALUES ($1, $2, $3, $4, $5) RETURNING *;`, [packing.plant_id, packing.date_pack, packing.product_unit, packing.product_unit_amount, packing.farm_worker])
   .then(result => {
     return result.rows[0];
   })

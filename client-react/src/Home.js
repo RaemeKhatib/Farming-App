@@ -71,7 +71,6 @@ export default function Home({
                 <TableCell></TableCell>
                 <TableCell>Field ID</TableCell>
                 <TableCell align="right">Crop Type</TableCell>
-                <TableCell align="right">Plant</TableCell>
                 <TableCell align="right">Harvest</TableCell>
                 <TableCell align="right">Pack</TableCell>
                 <TableCell align="right">Ship</TableCell>
@@ -96,16 +95,7 @@ export default function Home({
                   <TableCell component="th" scope="row">{plantItem.field_id}
                   </TableCell>
                   <TableCell align="right">{plantItem.crop_type}</TableCell>
-                  <TableCell component="th" scope="row">
-                  <Link to={`/planting/`}>
-                    <Button
-                      variant='contained' color='success'
-                      disabled={plantingItems.find(x => x.plant_id == plantItem.id) ? true : false}
-                    >
-                      Plant
-                    </Button>
-                  </Link>
-                  </TableCell>
+                  
                   <TableCell align="right">
                     <Link to={`/harvest/${plantItem.id}`}>
                       <Button

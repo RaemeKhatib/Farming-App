@@ -2,76 +2,144 @@ import { useParams } from "react-router-dom";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box } from '@mui/material';
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { datePickerToolbarClasses } from "@mui/x-date-pickers";
 
 
 export default function Summary() {
-  const [data, setData] = useState([]);
+  const [plantData, setPlantData] = useState([]);
+  const [harvestData, setHarvestData] = useState([]);
+  const [packData, setPackData] = useState([]);
+  const [shipData, setShipData] = useState([]);
+
   const { plant_id } = useParams();
-  console.log(plant_id);
+
 
   useEffect(() => {
-    axios.get(`/summary/${plant_id}`)   // might want to change to field id
-      .then((res) => {
-        
-        console.log("SUMMARY CALL DATA", res.data);
-        setData(res.data[0]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    Promise.all([
+      axios.get(`/summary/planting/${plant_id}`),
+      axios.get(`/summary/harvesting/${plant_id}`),
+      axios.get(`/summary/packing/${plant_id}`),
+      axios.get(`/summary/shipping/${plant_id}`),
+
+    ]).then((res) => {
+      console.log("Multiple Promises ", res);
+      setPlantData(res[0].data);
+      setHarvestData(res[1].data);
+      setPackData(res[2].data);
+      setShipData(res[3].data);
+
+      // setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
+    });
+
   }, []);
-  // let results = [];
-  // if(data.length > 0){
-  //   results = data.map(())
-  // }
+
+
 
   return (
 
     <Box mt={4} >
       <h1>Summary</h1>
-      <h3>HARVEST</h3>
 
+      <h3>Plant</h3>
+
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Field ID</TableCell>
+              <TableCell>{plantData.field_id}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Crop Type</TableCell>
+              <TableCell>{plantData.crop_type}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Date Fertilized</TableCell>
+              <TableCell>{plantData.date_fertilized}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Fertilizer/Persticides Applied</TableCell>
+              <TableCell>{plantData.fertilizer_pesticides_applied}</TableCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      </TableContainer>
+
+      <h3>Harvest</h3>
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
-              <TableCell>{data.id}</TableCell>
+              <TableCell>{harvestData.id}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Farm Worker</TableCell>
-              <TableCell>{data.farm_worker}</TableCell>
+              <TableCell>{harvestData.farm_worker}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Date of Harvest</TableCell>
-              <TableCell>{data.date_harvest}</TableCell>
+              <TableCell>{harvestData.date_harvest}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Tote Id</TableCell>
-              <TableCell>{data.tote_id}</TableCell>
+              <TableCell>{harvestData.tote_id}</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-
-            {/* <TableRow
-              key={harvests.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {harvests.id}
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {harvests.field_id}
-              </TableCell>
-              <TableCell align="right">{harvests.farm_worker}</TableCell>
-              <TableCell align="right">{harvests.date_harvest}</TableCell>
-              <TableCell align="right">{harvests.tote_id}</TableCell>
-            </TableRow> */}
-          </TableBody>
         </Table>
       </TableContainer>
+
+      <h3>Packing</h3>
+
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Packing Date</TableCell>
+              <TableCell>{packData.date_pack}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Packaging Unit</TableCell>
+              <TableCell>{packData.product_unit}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Packing Unit Quantity</TableCell>
+              <TableCell>{packData.product_unit_amount}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Farm Worker</TableCell>
+              <TableCell>{packData.farm_worker}</TableCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      </TableContainer>
+
+
+      <h3>Shipping</h3>
+
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Purchase Order Number</TableCell>
+              <TableCell>{shipData.purchase_order_number}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Product Unit</TableCell>
+              <TableCell>{shipData.buyer_name}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Ship Date</TableCell>
+              <TableCell>{shipData.ship_date}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Ship Amount</TableCell>
+              <TableCell>{shipData.ship_amount}</TableCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      </TableContainer>
+
     </Box>
 
 

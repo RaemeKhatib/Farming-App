@@ -1,20 +1,18 @@
-
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import React, { useState, useEffect } from "react";
-import { MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, List } from '@mui/material';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import { MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { useParams } from "react-router-dom";
 import axios from 'axios';
 
 export default function packing(props) {
+  const { plant_id } = useParams();
+
   const [date_pack, setDatePack] = useState("");
   const [product_unit, setProductUnit] = useState("");
   const [product_unit_amount, setProductUnitAmount] = useState("");
   const [farm_worker, setFarmWorker] = useState("");
-  const [plant_id, setPlantId] = useState("");
 
 
   const [listOfPacks, setListOfPacks] = useState([]);
@@ -34,7 +32,7 @@ export default function packing(props) {
     event.preventDefault();
     axios.post("/packing", {
       packing: {
-        date_pack, product_unit, product_unit_amount, farm_worker
+        plant_id, date_pack, product_unit, product_unit_amount, farm_worker
       }
     }).then(response => {
       console.log("Jordan was HERE!!!!");
@@ -43,14 +41,14 @@ export default function packing(props) {
     });
   };
 
-  const cropDisplay = props.plantingItems.map(item => {
-    return (
-      <MenuItem key={item.id}
-        value={item.id}>
-        {item.field_id} {item.crop_type}
-      </ MenuItem>
-    );
-  });
+  // const cropDisplay = props.plantingItems.map(item => {
+  //   return (
+  //     <MenuItem key={item.id}
+  //       value={item.id}>
+  //       {item.field_id} {item.crop_type}
+  //     </ MenuItem>
+  //   );
+  // });
 
   return (
 
@@ -63,7 +61,9 @@ export default function packing(props) {
         noValidate
         autoComplete="off"
       >
-        <FormControl fullWidth>
+        <h2>Packing</h2>
+
+        {/* <FormControl fullWidth>
           <InputLabel id="plant">Crop</InputLabel>
           <Select
             labelId="plant"
@@ -74,7 +74,7 @@ export default function packing(props) {
           >
             {cropDisplay}
           </Select>
-        </FormControl>
+        </FormControl> */}
 
         <TextField id="outlined-basic" label="Packing Date" variant="outlined" value={date_pack} onChange={(event) => setDatePack(event.target.value)} />
 
@@ -82,13 +82,13 @@ export default function packing(props) {
 
         <TextField id="outlined-basic" label="Product Unit Amount" variant="outlined" value={product_unit_amount} onChange={(event) => setProductUnitAmount(event.target.value)} />
 
-        <TextField id="outlined-basic" label="Farmer Worker" variant="outlined" value={farm_worker} onChange={(event) => setFarmWorker(event.target.value)} />
+        <TextField id="outlined-basic" label="Farm Worker" variant="outlined" value={farm_worker} onChange={(event) => setFarmWorker(event.target.value)} />
 
         <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleSubmit}>Submit</Button>
 
       </Box>
 
-      <Box mt={4}>
+      {/* <Box mt={4}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -104,7 +104,7 @@ export default function packing(props) {
             </TableHead>
             <TableBody>
               {listOfPacks.map((row) => (
-                
+
                 <TableRow
                   key={row.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -125,7 +125,7 @@ export default function packing(props) {
             </TableBody>
           </Table>
         </TableContainer>
-      </Box>
+      </Box> */}
     </>
 
   );

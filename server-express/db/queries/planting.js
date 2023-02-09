@@ -2,7 +2,7 @@
 const db = require('../connection');
 
 const getPlanting = () => {
-  console.log("PLANTING")
+  console.log("PLANTING");
   return db.query(`SELECT * FROM plant;`)
     .then(data => {
       return data.rows;

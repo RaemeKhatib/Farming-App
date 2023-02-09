@@ -7,7 +7,6 @@ const app = express();
 
 router.get("/", (req, res) => {
    packingQueries.getPacking()
-  
       .then(data => {
         console.log("data", data);
         res.json(data);

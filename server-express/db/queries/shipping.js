@@ -24,11 +24,12 @@ const getShippingbyId = (id) => {
 const createShipping = (shipping) => {
 
   return db.query(`INSERT INTO ship (
+    plant_id,
     purchase_order_number,
     buyer_name,
     ship_date,
     ship_amount
-  ) VALUES ($1, $2, $3, $4) RETURNING *;`, [shipping.purchase_order_number, shipping.buyer_name, shipping.ship_date, shipping.ship_amount])
+  ) VALUES ($1, $2, $3, $4, $5) RETURNING *;`, [shipping.plant_id, shipping.purchase_order_number, shipping.buyer_name, shipping.ship_date, shipping.ship_amount])
     .then(result => {
       return result.rows[0];
     });

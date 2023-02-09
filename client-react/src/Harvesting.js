@@ -3,18 +3,13 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import Planting from 'Planting';
-import { areDayPropsEqual } from '@mui/x-date-pickers/internals';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { MenuItem,Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import { useParams } from "react-router-dom"
+import { MenuItem } from '@mui/material';
+import { useParams } from "react-router-dom";
 
 
 
 export default function Harvesting(props) {
-  const {plant_id} = useParams()
+  const { plant_id } = useParams();
   const [farm_worker, setFarmWorker] = useState("");
   const [date_harvest, setDateHarvest] = useState("");
   const [tote_id, setToteId] = useState("");
@@ -50,14 +45,14 @@ export default function Harvesting(props) {
 
 
 
-  const cropDisplay = props.plantingItems.map(item => {
-    return (
-      <MenuItem key={item.id}
-        value={item.id}>
-        {item.field_id} {item.crop_type}
-      </ MenuItem>
-    );
-  });
+  // const cropDisplay = props.plantingItems.map(item => {
+  //   return (
+  //     <MenuItem key={item.id}
+  //       value={item.id}>
+  //       {item.field_id} {item.crop_type}
+  //     </ MenuItem>
+  //   );
+  // });
 
   return (
 
@@ -70,7 +65,7 @@ export default function Harvesting(props) {
         noValidate
         autoComplete="off"
       >
-
+        <h2>Harvesting</h2>
 
         <TextField id="outlined-basic" label="Farm Worker" variant="outlined" value={farm_worker} onChange={(event) => setFarmWorker(event.target.value)} />
 
@@ -83,7 +78,7 @@ export default function Harvesting(props) {
 
       </Box>
 
-      
+
 
     </>
 
