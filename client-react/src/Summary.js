@@ -1,17 +1,18 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box } from '@mui/material';
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Button from '@mui/material/Button';
 
 
-export default function Summary() {
+export default function Summary(props) {
   const [plantData, setPlantData] = useState([]);
   const [harvestData, setHarvestData] = useState([]);
   const [packData, setPackData] = useState([]);
   const [shipData, setShipData] = useState([]);
 
   const { plant_id } = useParams();
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     Promise.all([
@@ -26,20 +27,48 @@ export default function Summary() {
       setHarvestData(res[1].data);
       setPackData(res[2].data);
       setShipData(res[3].data);
-
-      // setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
     });
 
-  }, []);
+  }, [plant_id]);
 
+  const handleDelete = (event) => {
+    event.preventDefault();
+    axios.delete("/summary", {
+      data: { summary: plant_id }
+    }).then(response => {
+      console.log("RESPONSE!!!!", response.data);
+      Promise.all([
+        axios.get('/planting'),
+        axios.get('/harvesting'),
+        axios.get('/packing'),
+        axios.get('/shipping')
+      ]).then((res) => {
+        console.log('WHOLE RESPONSE OBJ', res);
+        props.setState(prev => ({
+          ...prev,
+          plantingItems: res[0].data,
+          harvestingItems: res[1].data,
+          packingItems: res[2].data,
+          shippingItems: res[3].data,
+          
+        })) 
+        navigate(`/`);
+
+      }).catch((err) => {
+        console.log(err.message);
+      });
+    });
+  };
 
 
   return (
 
-    <Box mt={4} >
+    <Box mt={2} >
       <h1>Summary</h1>
 
       <h3>Plant</h3>
+
+      <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleDelete}>Delete</Button>
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
@@ -116,10 +145,5 @@ export default function Summary() {
 
     </Box>
 
-
   );
-
-
-
-
 }

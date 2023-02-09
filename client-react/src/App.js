@@ -31,39 +31,32 @@ export default function App() {
     });
   };
 
-  // setState({...state, shippingItems})
   useEffect(() => {
     axios.get('/planting')
       .then((res) => {
         console.log('planting', res.data);
         setState(prev => ({ ...prev, plantingItems: res.data }));
-        // setPlantingItems(res.data);
       })
       .catch((err) => {
         console.log(err.message);
-        // setPlantingItems({ error: err.message });
       });
 
     axios.get('/harvesting')
       .then((res) => {
         console.log('harvesting', res.data);
         setState(prev => ({ ...prev, harvestingItems: res.data }));
-        // setHarvestingItems(res.data);
       })
       .catch((err) => {
         console.log(err.message);
-        // setHarvestingItems({ error: err.message });
       });
 
     axios.get('/packing')
       .then((res) => {
         console.log('packing', res.data);
         setState(prev => ({ ...prev, packingItems: res.data }));
-        // setPackingItems(res.data);
       })
       .catch((err) => {
         console.log(err.message);
-        // setPackingItems({ error: err.message });
       });
 
     axios.get('/shipping')
@@ -74,7 +67,6 @@ export default function App() {
       })
       .catch((err) => {
         console.log(err.message);
-        // setShippingItems({ error: err.message });
       });
   }, []);
 
@@ -125,9 +117,8 @@ export default function App() {
             plantingItems={state.plantingItems}
             addItemToState={addItemToState} />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/summary/:plant_id" element={<Summary />} />
-
-          
+          <Route path="/summary/:plant_id" element={<Summary
+           setState={setState}/>} />
         </Routes>
         {/* <img src={logo} /> */}
         

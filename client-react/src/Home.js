@@ -139,21 +139,6 @@ export default function Home({
           </Table>
         </TableContainer>
       </Box>
-      {/* <p>___________________Home___________________</p>
-
-
-
-      <p>___________________Plant___________________</p>
-      {plantingDisplay}
-
-      <p>___________________Harvest___________________</p>
-      {harvestingDisplay}
-
-      <p>___________________Pack___________________</p>
-      {packingDisplay}
-
-      <p>___________________Ship___________________</p>
-      {shippingDisplay} */}
     </>
   );
   

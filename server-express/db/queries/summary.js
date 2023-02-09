@@ -51,7 +51,9 @@ const getShipping = (id) => {
 
 };
 
+const deleteHarvest = (id) => {
+  return db.query (`DELETE FROM plant WHERE id = $1;`, [Number(id)])}
 
-module.exports = { getPlanting, getHarvest, getPacking, getShipping };
 
 
+module.exports = { getPlanting, getHarvest, getPacking, getShipping, deleteHarvest };

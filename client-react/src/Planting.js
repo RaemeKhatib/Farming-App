@@ -4,10 +4,11 @@ import Button from '@mui/material/Button';
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 
 
 export default function Planting(props) {
-  
+  const navigate = useNavigate();
   const [field_id, setFieldId] = useState("");
   const [crop_type, setCropType] = useState("");
   const [date_fertilized, setDateFertilized] = useState("");
@@ -36,7 +37,7 @@ export default function Planting(props) {
       console.log("Krista was HERE!!!!");
       props.addItemToState("plantingItems", response.data);
       setListOfPlants((prev) => [...prev, response.data] );
-  
+      navigate(`/`);
     });
   }
 
