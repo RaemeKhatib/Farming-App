@@ -10,10 +10,14 @@ import Summary from 'Summary';
 import Login from 'Login';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from "react-router-dom";
+import logo from './images/organicfarms.jpg';
+import AgricultureOutlinedIcon from '@mui/icons-material/AgricultureOutlined';
 
 export default function App() {
   const [status, setStatus] = useState({});
   const [state, setState] = useState({
+
+
 
     plantingItems: [],
     harvestingItems: [],
@@ -86,12 +90,17 @@ export default function App() {
   }, []);
 
   return (
+    
     <div className="App">
+      <div id="topBlackBar"></div>
+<div className="black-bar"></div>
 
       {/* <h1>Farming Community!!</h1> */}
 
       <Navbar />
       <div className="container">
+      
+
         <Routes>
           <Route path="/" element={<Home
             shippingItems={state.shippingItems}
@@ -118,8 +127,10 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/summary/:plant_id" element={<Summary />} />
 
-
+          
         </Routes>
+        {/* <img src={logo} /> */}
+        
       </div>
 
 

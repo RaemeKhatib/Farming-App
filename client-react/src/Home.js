@@ -2,6 +2,10 @@ import React, { useEffect, Fragment, useState } from "react";
 import axios from "axios";
 import { Box, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { Link } from "react-router-dom";
+import GrassIcon from '@mui/icons-material/Grass';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import AgricultureIcon from '@mui/icons-material/Agriculture';
+import Inventory2Icon from '@mui/icons-material/Inventory2';
 
 export default function Home({
   plantingItems,
@@ -63,6 +67,7 @@ export default function Home({
 
   return (
     <>
+    
       <Box mb={4}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -70,10 +75,10 @@ export default function Home({
               <TableRow>
                 <TableCell></TableCell>
                 <TableCell>Field ID</TableCell>
-                <TableCell align="right">Crop Type</TableCell>
-                <TableCell align="right">Harvest</TableCell>
-                <TableCell align="right">Pack</TableCell>
-                <TableCell align="right">Ship</TableCell>
+                <TableCell align="right">Crop Type <GrassIcon /></TableCell>
+                <TableCell align="right">Harvest <AgricultureIcon /></TableCell>
+                <TableCell align="right">Pack <Inventory2Icon /></TableCell>
+                <TableCell align="right">Ship <LocalShippingIcon /></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -151,4 +156,5 @@ export default function Home({
       {shippingDisplay} */}
     </>
   );
+  
 }
