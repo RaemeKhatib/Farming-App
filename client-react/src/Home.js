@@ -71,7 +71,7 @@ export default function Home({
                 <TableCell></TableCell>
                 <TableCell>Field ID</TableCell>
                 <TableCell align="right">Crop Type</TableCell>
-                <TableCell align="right">Date Fertilized</TableCell>
+                <TableCell align="right">Plant</TableCell>
                 <TableCell align="right">Harvest</TableCell>
                 <TableCell align="right">Pack</TableCell>
                 <TableCell align="right">Ship</TableCell>
@@ -93,8 +93,14 @@ export default function Home({
                     </Link></TableCell>
                   <TableCell component="th" scope="row">{plantItem.field_id}</TableCell>
                   <TableCell align="right">{plantItem.crop_type}</TableCell>
-                  <TableCell align="right">{plantItem.date_fertilized}</TableCell>
-
+                  <Link to={`/planting/`}>
+                    <Button
+                      variant='contained' color='success'
+                      disabled={plantingItems.find(x => x.plant_id == plantItem.id) ? true : false}
+                    >
+                      Plant
+                    </Button>
+                  </Link>
                   <TableCell align="right">
                     <Link to={`/harvest/${plantItem.id}`}>
                       <Button
@@ -105,15 +111,27 @@ export default function Home({
                       </Button>
                     </Link>
                   </TableCell>
+
                   <TableCell align="right">
-                    <Button variant='contained' color='info'>
-                      Pack
-                    </Button>
+                    <Link to={`/packing/${plantItem.id}`}>
+                      <Button
+                        variant='contained' color='info'
+                        disabled={packingItems.find(x => x.plant_id == plantItem.id) ? true : false}
+                      >
+                        Pack
+                      </Button>
+                    </Link>
+
                   </TableCell>
                   <TableCell align="right">
-                    <Button variant='contained' color='secondary'>
-                      Ship
-                    </Button>
+                    <Link to={`/shipping/${plantItem.id}`}>
+                      <Button
+                        variant='contained' color='secondary'
+                        disabled={shippingItems.find(x => x.plant_id == plantItem.id) ? true : false}
+                      >
+                        Ship
+                      </Button>
+                    </Link>
                   </TableCell>
                 </TableRow>
               ))}

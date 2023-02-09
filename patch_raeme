@@ -1,0 +1,327 @@
+commit 2939a40b8f6545148e444c9a0e102a1bd164b988
+Author: Raeme Khatib <raeme.khatib@telus.com>
+Date:   Wed Feb 8 15:00:00 2023 -0700
+
+     update to give a summary page
+
+diff --git a/client-react/src/App.js b/client-react/src/App.js
+index 9a2cf4c..25833f6 100644
+--- a/client-react/src/App.js
++++ b/client-react/src/App.js
+@@ -6,6 +6,7 @@ import Harvest from 'Harvesting';
+ import Packing from 'Packing';
+ import Shipping from 'Shipping';
+ import Planting from 'Planting';
++import Summary from 'Summary';
+ import Login from 'Login';
+ import { useEffect, useState } from 'react';
+ import { Route, Routes } from "react-router-dom";
+@@ -100,21 +101,23 @@ export default function App() {
+             setState={setState} />} />
+           <Route path="/planting" element={<Planting
+             addItemToState={addItemToState} />} />
+-          <Route path="/harvest" element={
++          <Route path="/harvest/:plant_id" element={
+             <Harvest
+               plantingItems={state.plantingItems}
+               harvestingItems={state.harvestingItems}
+               addItemToState={addItemToState}
+             />} />
+-          <Route path="/packing" element={
++          <Route path="/packing/:plant_id" element={
+           <Packing
+             plantingItems={state.plantingItems}
+             addItemToState={addItemToState} />} />
+-          <Route path="/shipping" element={
++          <Route path="/shipping/:plant_id" element={
+           <Shipping
+             plantingItems={state.plantingItems}
+             addItemToState={addItemToState} />} />
+           <Route path="/login" element={<Login />} />
++          <Route path="/summary/:plant_id" element={<Summary />} />
++
+ 
+         </Routes>
+       </div>
+diff --git a/client-react/src/Harvesting.js b/client-react/src/Harvesting.js
+index 6a1b7a8..b461cfc 100644
+--- a/client-react/src/Harvesting.js
++++ b/client-react/src/Harvesting.js
+@@ -9,12 +9,15 @@ import InputLabel from '@mui/material/InputLabel';
+ import FormControl from '@mui/material/FormControl';
+ import Select from '@mui/material/Select';
+ import { MenuItem,Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
++import { useParams } from "react-router-dom"
++
++
+ 
+ export default function Harvesting(props) {
++  const {plant_id} = useParams()
+   const [farm_worker, setFarmWorker] = useState("");
+   const [date_harvest, setDateHarvest] = useState("");
+   const [tote_id, setToteId] = useState("");
+-  const [plant_id, setPlantId] = useState("");
+   //need a button to generate a harvest code here on page
+ 
+   const [listOfHarvests, setListOfHarvests] = useState([]);
+@@ -39,7 +42,7 @@ export default function Harvesting(props) {
+       }
+ 
+     }).then(response => {
+-      console.log("Raeme was HERE!!!!");
++      console.log("RESPONSE / DATA!!!!", response.data);
+       props.addItemToState("harvestingItems", response.data);
+       setListOfHarvests((prev) => [...prev, response.data]);
+     });
+@@ -68,18 +71,6 @@ export default function Harvesting(props) {
+         autoComplete="off"
+       >
+ 
+-        <FormControl fullWidth>
+-          <InputLabel id="plant">Crop</InputLabel>
+-          <Select
+-            labelId="plant"
+-            id="plant-select"
+-            value={plant_id}
+-            label="Plant"
+-            onChange={(event) => setPlantId(event.target.value)}
+-          >
+-            {cropDisplay}
+-          </Select>
+-        </FormControl>
+ 
+         <TextField id="outlined-basic" label="Farm Worker" variant="outlined" value={farm_worker} onChange={(event) => setFarmWorker(event.target.value)} />
+ 
+@@ -92,39 +83,7 @@ export default function Harvesting(props) {
+ 
+       </Box>
+ 
+-      <Box mt={4}>
+-        <TableContainer component={Paper}>
+-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+-            <TableHead>
+-              <TableRow>
+-                <TableCell>ID</TableCell>
+-                <TableCell>Field ID</TableCell>
+-                <TableCell align="right">Farm Worker</TableCell>
+-                <TableCell align="right">Date of Harvest</TableCell>
+-                <TableCell align="right">Tote ID</TableCell>
+-              </TableRow>
+-            </TableHead>
+-            <TableBody>
+-              {listOfHarvests.map((row) => (
+-                <TableRow
+-                  key={row.id}
+-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+-                >
+-                  <TableCell component="th" scope="row">
+-                    {row.id}
+-                  </TableCell>
+-                  <TableCell component="th" scope="row">
+-                    {row.field_id}
+-                  </TableCell>
+-                  <TableCell align="right">{row.farm_worker}</TableCell>
+-                  <TableCell align="right">{row.date_harvest}</TableCell>
+-                  <TableCell align="right">{row.tote_id}</TableCell>
+-                </TableRow>
+-              ))}
+-            </TableBody>
+-          </Table>
+-        </TableContainer>
+-      </Box>
++      
+ 
+     </>
+ 
+diff --git a/client-react/src/Home.js b/client-react/src/Home.js
+index 854c619..1656fd0 100644
+--- a/client-react/src/Home.js
++++ b/client-react/src/Home.js
+@@ -1,7 +1,7 @@
+ import React, { useEffect, Fragment, useState } from "react";
+ import axios from "axios";
+-import { Box, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'; 
+-
++import { Box, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
++import { Link } from "react-router-dom";
+ 
+ export default function Home({
+   plantingItems,
+@@ -13,8 +13,8 @@ export default function Home({
+   // const [shippingItems, setShippingItems] = useState([]);
+   // const [plantingItems, setPlantingItems] = useState([]);
+   // const [harvestingItems, setHarvestingItems] = useState([]);
+-  
+-  
++
++
+   const plantingDisplay = plantingItems.map(item => {
+     return (
+       <Fragment key={item.id}>
+@@ -46,8 +46,8 @@ export default function Home({
+         <div>Farm Worker: {item.farm_worker}</div>
+       </ Fragment>
+     );
+-  }); 
+-const shippingDisplay = shippingItems.map(item => {
++  });
++  const shippingDisplay = shippingItems.map(item => {
+     return (
+       <Fragment key={item.id}>
+         <div>Purchase Order Number: {item.purchase_order_number}</div>
+@@ -68,7 +68,7 @@ const shippingDisplay = shippingItems.map(item => {
+           <Table sx={{ minWidth: 650 }} aria-label="simple table">
+             <TableHead>
+               <TableRow>
+-                <TableCell>ID</TableCell>
++                <TableCell></TableCell>
+                 <TableCell>Field ID</TableCell>
+                 <TableCell align="right">Crop Type</TableCell>
+                 <TableCell align="right">Date Fertilized</TableCell>
+@@ -83,26 +83,35 @@ const shippingDisplay = shippingItems.map(item => {
+                   key={plantItem.id}
+                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                 >
+-                  <TableCell component="th" scope="row">{plantItem.id}</TableCell>
++                  <TableCell component="th" scope="row">
++                    <Link to={`/summary/${plantItem.id}`}>
++                      <Button
++                        variant='contained' color='primary'
++                      >
++                        Summary
++                      </Button>
++                    </Link></TableCell>
+                   <TableCell component="th" scope="row">{plantItem.field_id}</TableCell>
+                   <TableCell align="right">{plantItem.crop_type}</TableCell>
+                   <TableCell align="right">{plantItem.date_fertilized}</TableCell>
+ 
+                   <TableCell align="right">
+-                    <Button 
+-                      variant='contained' color='success'
+-                      disabled={harvestingItems.find(x => x.plant_id == plantItem.id) ? true : false }
+-                      >   
+-                      Harvest
+-                    </Button>
++                    <Link to={`/harvest/${plantItem.id}`}>
++                      <Button
++                        variant='contained' color='success'
++                        disabled={harvestingItems.find(x => x.plant_id == plantItem.id) ? true : false}
++                      >
++                        Harvest
++                      </Button>
++                    </Link>
+                   </TableCell>
+                   <TableCell align="right">
+-                    <Button variant='contained' color='info'>   
++                    <Button variant='contained' color='info'>
+                       Pack
+                     </Button>
+                   </TableCell>
+                   <TableCell align="right">
+-                    <Button variant='contained' color='secondary'>   
++                    <Button variant='contained' color='secondary'>
+                       Ship
+                     </Button>
+                   </TableCell>
+diff --git a/client-react/src/Planting.js b/client-react/src/Planting.js
+index 1e51be2..b71c3d3 100644
+--- a/client-react/src/Planting.js
++++ b/client-react/src/Planting.js
+@@ -5,7 +5,9 @@ import React, { useState, useEffect } from "react";
+ import axios from 'axios';
+ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+ 
++
+ export default function Planting(props) {
++  
+   const [field_id, setFieldId] = useState("");
+   const [crop_type, setCropType] = useState("");
+   const [date_fertilized, setDateFertilized] = useState("");
+diff --git a/client-react/src/Summary.js b/client-react/src/Summary.js
+new file mode 100644
+index 0000000..a24ba97
+--- /dev/null
++++ b/client-react/src/Summary.js
+@@ -0,0 +1,66 @@
++import { useParams } from "react-router-dom";
++import { MenuItem,Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box } from '@mui/material';
++import { useState, useEffect } from "react";
++import axios from "axios";
++
++
++export default function Summary() {
++  const [harvest,setHarvest] = useState("")
++  const { plant_id } = useParams();
++  console.log(plant_id);
++
++  useEffect(() => {
++
++    axios.get('/summary')
++      .then((res) => {
++        setHarvest(res.data);
++        console.log("!!!!!!!!!! RES.DAATA", res.data)
++      })
++      .catch((err) => {
++        console.log(err);
++      });
++  }, []);
++
++  return (
++
++    <Box mt={4} >
++      <h3>HARVEST</h3>
++      <TableContainer component={Paper}>
++        <Table sx={{ minWidth: 650 }} aria-label="simple table">
++          <TableHead>
++            <TableRow>
++              <TableCell>ID</TableCell>
++              <TableCell>Field ID</TableCell>
++              <TableCell align="right">Farm Worker</TableCell>
++              <TableCell align="right">Date of Harvest</TableCell>
++              <TableCell align="right">Tote ID</TableCell>
++            </TableRow>
++          </TableHead>
++          <TableBody>
++          
++              <TableRow
++                key={harvest.id}
++                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
++              >
++                <TableCell component="th" scope="row">
++                  {harvest.id}
++                </TableCell>
++                <TableCell component="th" scope="row">
++                  {harvest.field_id}
++                </TableCell>
++                <TableCell align="right">{harvest.farm_worker}</TableCell>
++                <TableCell align="right">{harvest.date_harvest}</TableCell>
++                <TableCell align="right">{harvest.tote_id}</TableCell>
++              </TableRow>
++          </TableBody>
++        </Table>
++      </TableContainer>
++    </Box>
++
++
++  );
++
++
++
++
++}
+\ No newline at end of file
+diff --git a/server-express/routes/harvesting.js b/server-express/routes/harvesting.js
+index 6cf9900..70a1b74 100644
+--- a/server-express/routes/harvesting.js
++++ b/server-express/routes/harvesting.js
+@@ -14,8 +14,8 @@ router.get("/", (req, res) => {
+ 
+ });
+ 
+-router.get("/:id", (req, res) => {
+-  harvestingQueries.getHarvestbyId(req.params.id)
++router.get("/harvest/:plant_id", (req, res) => {
++  harvestingQueries.getHarvestbyId(req.params.plant_id)
+ 
+     .then(data => {
+       console.log("data", data);

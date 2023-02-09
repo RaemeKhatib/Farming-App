@@ -25,11 +25,11 @@ export default function Navbar() {
     <Link to="/" className="site-title">Farm</Link>
     <ul className="nav-layout">
           <CustomLink to="/planting">Plant</CustomLink>
-        {id && <>
+        {/* {id && <>
         <CustomLink to="/harvest">Harvest</CustomLink>  
         <CustomLink to="/packing">Pack</CustomLink>
         <CustomLink to="/shipping">Ship</CustomLink>
-        </>}
+        </>} */}
         <CustomLink to="/login">Login</CustomLink>
 
     </ul>

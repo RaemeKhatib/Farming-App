@@ -8,6 +8,8 @@ const bodyparser = require("body-parser");
 const plantingRoutes = require('../routes/planting');
 const harvestingRoutes = require('../routes/harvesting');
 const packingRoutes = require('../routes/packing');
+const summaryRoutes = require ('../routes/summary')
+
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -25,7 +27,7 @@ app.use("/planting", plantingRoutes);
 app.use("/harvesting", harvestingRoutes);
 app.use("/packing", packingRoutes);
 app.use("/shipping", shippingRoutes);
-
+app.use("/summary", summaryRoutes)
 
 
 

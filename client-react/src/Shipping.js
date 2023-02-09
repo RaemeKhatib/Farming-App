@@ -80,7 +80,7 @@ export default function Shipping(props) {
         <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleSubmit}>Submit</Button>
 
       </Box>
-      <img src="https://media.tenor.com/VbRh5TkVyBAAAAAd/hippo-baby.gif.webp" alt="Organic Farms" />
+      <img src="https://media.tenor.com/uLwqbmH1FNsAAAAM/cow-tongue-farm-animals.gif" alt="Organic Farms" />
 
 
       <Box mt={4}>
