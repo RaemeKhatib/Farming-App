@@ -1,11 +1,11 @@
-import { useParams, useNavigate  } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box } from '@mui/material';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from '@mui/material/Button';
 
 
-export default function Summary() {
+export default function Summary(props) {
   const [plantData, setPlantData] = useState([]);
   const [harvestData, setHarvestData] = useState([]);
   const [packData, setPackData] = useState([]);
@@ -33,11 +33,30 @@ export default function Summary() {
 
   const handleDelete = (event) => {
     event.preventDefault();
-     axios.delete("/summary", {
-       data: { summary: plant_id } 
-      }).then(response => {
+    axios.delete("/summary", {
+      data: { summary: plant_id }
+    }).then(response => {
       console.log("RESPONSE!!!!", response.data);
-      navigate(`/`);
+      Promise.all([
+        axios.get('/planting'),
+        axios.get('/harvesting'),
+        axios.get('/packing'),
+        axios.get('/shipping')
+      ]).then((res) => {
+        console.log('WHOLE RESPONSE OBJ', res);
+        props.setState(prev => ({
+          ...prev,
+          plantingItems: res[0].data,
+          harvestingItems: res[1].data,
+          packingItems: res[2].data,
+          shippingItems: res[3].data,
+          
+        })) 
+        navigate(`/`);
+
+      }).catch((err) => {
+        console.log(err.message);
+      });
     });
   };
 
