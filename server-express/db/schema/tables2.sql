@@ -48,9 +48,9 @@ CREATE TABLE ship (
   ship_amount VARCHAR(255)
 ); 
 
-DROP TABLE IF EXISTS field_plant CASCADE;
-CREATE TABLE field_plant (
-id SERIAL PRIMARY KEY,
-plant_id INTEGER REFERENCES plant(id) ON DELETE CASCADE,
-field_id INTEGER REFERENCES field(id) ON DELETE CASCADE
-);
+-- DROP TABLE IF EXISTS field_plant CASCADE;
+-- CREATE TABLE field_plant (
+-- id SERIAL PRIMARY KEY,
+-- plant_id INTEGER REFERENCES plant(id) ON DELETE CASCADE,
+-- field_id INTEGER REFERENCES field(id) ON DELETE CASCADE
+-- );

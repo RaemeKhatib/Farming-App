@@ -53,7 +53,15 @@ router.get("/shipping/:id", (req, res) => {
 
 });
 
-
+router.delete('/', (req, res) => {
+  console.log('THIS IS DELETE SUMMARY', req.body)
+  summaryQueries.deleteHarvest(req.body.summary)
+    .then(() => {
+      res.status(202).send("Okay")
+    }).catch((err) => {
+      res.status(500).send({ error: err.message });
+    });
+});
 
 
 

@@ -116,9 +116,8 @@ export default function App() {
             plantingItems={state.plantingItems}
             addItemToState={addItemToState} />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/summary/:plant_id" element={<Summary />} />
-
-
+          <Route path="/summary/:plant_id" element={<Summary
+           setState={setState}/>} />
         </Routes>
       </div>
 

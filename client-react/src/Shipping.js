@@ -7,10 +7,11 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import React, { useState, useEffect } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 export default function Shipping(props) {
   const { plant_id } = useParams();
+  const navigate = useNavigate();
   const [purchase_order_number, setPurchaseOrderNumber] = useState("");
   const [buyer_name, setBuyerName] = useState("");
   const [ship_date, setShipDate] = useState("");
@@ -49,7 +50,8 @@ export default function Shipping(props) {
       console.log("John was NOT HERE!!!!");
       props.addItemToState("shippingItems", response.data);
       setListOfShips((prev) => [...prev, response.data]);
-    });
+      navigate(`/summary/${plant_id}`);
+     });
   };
 
   return (

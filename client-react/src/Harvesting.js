@@ -4,12 +4,13 @@ import Button from '@mui/material/Button';
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { MenuItem } from '@mui/material';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 
 
 export default function Harvesting(props) {
   const { plant_id } = useParams();
+  const navigate = useNavigate();
   const [farm_worker, setFarmWorker] = useState("");
   const [date_harvest, setDateHarvest] = useState("");
   const [tote_id, setToteId] = useState("");
@@ -40,19 +41,10 @@ export default function Harvesting(props) {
       console.log("RESPONSE / DATA!!!!", response.data);
       props.addItemToState("harvestingItems", response.data);
       setListOfHarvests((prev) => [...prev, response.data]);
+      navigate(`/summary/${plant_id}`);
     });
   };
 
-
-
-  // const cropDisplay = props.plantingItems.map(item => {
-  //   return (
-  //     <MenuItem key={item.id}
-  //       value={item.id}>
-  //       {item.field_id} {item.crop_type}
-  //     </ MenuItem>
-  //   );
-  // });
 
   return (
 
@@ -77,8 +69,6 @@ export default function Harvesting(props) {
         <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleSubmit}>Submit</Button>
 
       </Box>
-
-
 
     </>
 

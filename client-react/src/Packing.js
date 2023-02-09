@@ -3,12 +3,12 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import React, { useState, useEffect } from "react";
 import { MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate} from "react-router-dom";
 import axios from 'axios';
 
 export default function packing(props) {
   const { plant_id } = useParams();
-
+  const navigate = useNavigate();
   const [date_pack, setDatePack] = useState("");
   const [product_unit, setProductUnit] = useState("");
   const [product_unit_amount, setProductUnitAmount] = useState("");
@@ -38,6 +38,7 @@ export default function packing(props) {
       console.log("Jordan was HERE!!!!");
       props.addItemToState("packingItems", response.data);
       setListOfPacks((prev) => [...prev, response.data]);
+      navigate(`/summary/${plant_id}`);
     });
   };
 
