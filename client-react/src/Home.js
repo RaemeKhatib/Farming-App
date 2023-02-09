@@ -90,9 +90,13 @@ export default function Home({
                       >
                         Summary
                       </Button>
-                    </Link></TableCell>
-                  <TableCell component="th" scope="row">{plantItem.field_id}</TableCell>
+                    </Link>
+                    </TableCell>
+                    
+                  <TableCell component="th" scope="row">{plantItem.field_id}
+                  </TableCell>
                   <TableCell align="right">{plantItem.crop_type}</TableCell>
+                  <TableCell component="th" scope="row">
                   <Link to={`/planting/`}>
                     <Button
                       variant='contained' color='success'
@@ -101,6 +105,7 @@ export default function Home({
                       Plant
                     </Button>
                   </Link>
+                  </TableCell>
                   <TableCell align="right">
                     <Link to={`/harvest/${plantItem.id}`}>
                       <Button
