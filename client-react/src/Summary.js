@@ -70,7 +70,7 @@ export default function Summary(props) {
 
       <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleDelete}>Delete</Button>
 
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} style={{ width: 750, height: 300 }}>
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -95,7 +95,7 @@ export default function Summary(props) {
 
       <h3>Harvest</h3>
 
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} style={{ width: 750, height: 300 }}>
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -120,7 +120,7 @@ export default function Summary(props) {
 
       <h3>Packing</h3>
 
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} style={{ width: 750, height: 300 }}>
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -144,8 +144,8 @@ export default function Summary(props) {
       </TableContainer>
       <h3>Shipping</h3>
 
-<TableContainer component={Paper}>
-  <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <TableContainer component={Paper} style={{ width: 750, height: 300 }}>
+  <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
     <TableHead>
       <TableRow>
         <TableCell>Purchase Order Number</TableCell>

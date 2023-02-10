@@ -101,12 +101,17 @@
 }
 
 
-#topBlackBar {
-  border-top: 21px solid #07374e;
-}
+/* #topBlackBar {
+  border-top: 20px solid #07374e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: fixed;
+} */
 
 
 
-.container {
+/* .container {
 
-}
+} */
