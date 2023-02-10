@@ -55,5 +55,14 @@ const deleteHarvest = (id) => {
   return db.query (`DELETE FROM plant WHERE id = $1;`, [Number(id)])}
 
 
+  const updatePlanting = (planting) => {
 
-module.exports = { getPlanting, getHarvest, getPacking, getShipping, deleteHarvest };
+    return db.query(`UPDATE plant SET status = $1, $2, $3, $4 WHERE id = ${id} RETURNING *;`, [planting.field_id, planting.crop_type, planting.date_fertilized, planting.fertilizer_pesticides_applied])
+      .then(result => {
+        return result.rows[0];
+      });
+  };
+  
+
+
+module.exports = { getPlanting, getHarvest, getPacking, getShipping, deleteHarvest, updatePlanting };
