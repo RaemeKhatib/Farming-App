@@ -1,8 +1,29 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, TextField } from '@mui/material';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from '@mui/material/Button';
+
+
+const CellFormatter = ({ isEdit, value }) => {
+
+  return (
+    <>
+      {!isEdit && <span> {value} </span>}
+      {isEdit && <TextField value={value} />}
+    </>
+
+
+  );
+
+
+};
+
+
+
+
+
+
 
 
 export default function Summary(props) {
@@ -10,6 +31,8 @@ export default function Summary(props) {
   const [harvestData, setHarvestData] = useState([]);
   const [packData, setPackData] = useState([]);
   const [shipData, setShipData] = useState([]);
+  const [isEdit, setisEdit] = useState(false);
+
 
   const { plant_id } = useParams();
   const navigate = useNavigate();
@@ -50,8 +73,8 @@ export default function Summary(props) {
           harvestingItems: res[1].data,
           packingItems: res[2].data,
           shippingItems: res[3].data,
-          
-        })) 
+
+        }));
         navigate(`/`);
 
       }).catch((err) => {
@@ -64,18 +87,21 @@ export default function Summary(props) {
   return (
 
     <Box mt={2} >
-      <h1>Summary</h1>
+      <h1>Summary</h1>   <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleDelete}>Delete All Fields</Button>
 
       <h3>Plant</h3>
 
-      <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleDelete}>Delete</Button>
-
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
+      <TableContainer component={Paper} >
+        <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table" >
           <TableHead>
+            <TableRow><Button variant='contained' color='success' onClick={() => setisEdit(true)}  >
+              Edit Button </Button></TableRow>
             <TableRow>
               <TableCell>Field ID</TableCell>
-              <TableCell align="right">{plantData.field_id}</TableCell>
+              <TableCell align="right" onClick={() => console.log("BUTTON ISNY CLICKING")}><CellFormatter value={plantData.field_id} isEdit={isEdit} />
+
+              </TableCell>
+              <TableCell></TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Crop Type</TableCell>
@@ -98,6 +124,8 @@ export default function Summary(props) {
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
           <TableHead>
+            <TableRow><Button variant='contained' color='success' onClick={() => setisEdit(true)}  >
+              Edit Button </Button></TableRow>
             <TableRow>
               <TableCell>ID</TableCell>
               <TableCell align="right">{harvestData.id}</TableCell>
@@ -123,6 +151,8 @@ export default function Summary(props) {
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
           <TableHead>
+            <TableRow><Button variant='contained' color='success' onClick={() => setisEdit(true)}  >
+              Edit Button </Button></TableRow>
             <TableRow>
               <TableCell>Date of Packing</TableCell>
               <TableCell align="right">{packData.date_pack}</TableCell>
@@ -144,28 +174,30 @@ export default function Summary(props) {
       </TableContainer>
       <h3>Shipping</h3>
 
-<TableContainer component={Paper}>
-  <Table sx={{ minWidth: 650 }} aria-label="simple table">
-    <TableHead>
-      <TableRow>
-        <TableCell>Purchase Order Number</TableCell>
-        <TableCell>{shipData.purchase_order_number}</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell>Product Unit</TableCell>
-        <TableCell>{shipData.buyer_name}</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell>Ship Date</TableCell>
-        <TableCell>{shipData.ship_date}</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell>Ship Amount</TableCell>
-        <TableCell>{shipData.ship_amount}</TableCell>
-      </TableRow>
-    </TableHead>
-  </Table>
-</TableContainer>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow><Button variant='contained' color='success' onClick={() => setisEdit(true)}  >
+              Edit Button </Button></TableRow>
+            <TableRow>
+              <TableCell>Purchase Order Number</TableCell>
+              <TableCell>{shipData.purchase_order_number}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Product Unit</TableCell>
+              <TableCell>{shipData.buyer_name}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Ship Date</TableCell>
+              <TableCell>{shipData.ship_date}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Ship Amount</TableCell>
+              <TableCell>{shipData.ship_amount}</TableCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      </TableContainer>
       <div className="login" >
 
       </div>
