@@ -87,17 +87,13 @@ export default function App() {
   }, []);
 
   return (
-    
     <div className="App">
-      <div id="topBlackBar"></div>
-<div className="black-bar"></div>
-
-      {/* <h1>Farming Community!!</h1> */}
-
+      <div id="topBlackBar">
+        <p></p>
+      </div>
+      <div className="black-bar"></div>
       <Navbar />
       <div className="container">
-      
-
         <Routes>
           <Route path="/" element={<Home
             shippingItems={state.shippingItems}
@@ -122,6 +118,7 @@ export default function App() {
             plantingItems={state.plantingItems}
             addItemToState={addItemToState} />} />
           <Route path="/login" element={<Login />} />
+  
           <Route path="/summary/:plant_id" element={<Summary
            setState={setState}/>} />
            <Route path="/edit" element={<Edit />} />
@@ -129,12 +126,13 @@ export default function App() {
            plantingItems={state.plantingItems}
             addItemToState={addItemToState} />} />
         </Routes>
+      </div>
 
         {/* <img src={logo} /> */}
         
       </div>
 
 
-    </div>
-  );
+    
+  )
 }
