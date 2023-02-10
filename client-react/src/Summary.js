@@ -124,25 +124,48 @@ export default function Summary(props) {
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Purchase Order Number</TableCell>
-              <TableCell align="right">{shipData.purchase_order_number}</TableCell>
+              <TableCell>Date of Packing</TableCell>
+              <TableCell align="right">{packData.date_pack}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Product Unit</TableCell>
-              <TableCell align="right">{shipData.buyer_name}</TableCell>
+              <TableCell align="right">{packData.product_unit}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Ship Date</TableCell>
-              <TableCell align="right">{shipData.ship_date}</TableCell>
+              <TableCell>Product Unit Amount</TableCell>
+              <TableCell align="right">{packData.product_unit_amount}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Ship Amount</TableCell>
-              <TableCell align="right">{shipData.ship_amount}</TableCell>
+              <TableCell>Farm Worker</TableCell>
+              <TableCell align="right">{packData.farm_worker}</TableCell>
             </TableRow>
           </TableHead>
         </Table>
       </TableContainer>
+      <h3>Shipping</h3>
 
+<TableContainer component={Paper}>
+  <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableHead>
+      <TableRow>
+        <TableCell>Purchase Order Number</TableCell>
+        <TableCell>{shipData.purchase_order_number}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Product Unit</TableCell>
+        <TableCell>{shipData.buyer_name}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Ship Date</TableCell>
+        <TableCell>{shipData.ship_date}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Ship Amount</TableCell>
+        <TableCell>{shipData.ship_amount}</TableCell>
+      </TableRow>
+    </TableHead>
+  </Table>
+</TableContainer>
     </Box>
 
   );
