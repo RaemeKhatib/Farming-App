@@ -67,12 +67,17 @@ router.delete('/', (req, res) => {
 });
 
 
-router.put('/planting/:id', (req, res) => {
+router.put('/:formName/:id', (req, res) => {
   let id = req.params.id;
-  console.log("WE are TRYING TO UPDATE THE PLANT INFO", id);
-  summaryQueries.updatePlanting(req.body)
+  let formName = req.params.formName;
+  let table = "";
+  if (formName === "planting") { table = "plant"; }
+  else if (formName === "harvesting") { table = "harvest"; }
+  else if (formName === "packing") { table = "pack"; }
+  else if (formName === "shipping") { table = "ship"; }
+console.log("TABLE", table)
+  summaryQueries.updateTables(req.body, id, table)
     .then((data) => {
-      console.log("TRYING UPDATE QUERY IN SUMMARY EDIT SOMETHING", data);
       res.json(data);
     });
 });

@@ -52,17 +52,20 @@ const getShipping = (id) => {
 };
 
 const deleteHarvest = (id) => {
-  return db.query (`DELETE FROM plant WHERE id = $1;`, [Number(id)])}
+  return db.query(`DELETE FROM plant WHERE id = $1;`, [Number(id)]);
+};
 
 
-  const updatePlanting = (planting) => {
+const updateTables = (data, id, table) => {
+  console.log("DATA", data)
+  return db.query(`UPDATE ${table} SET ${Object.keys(data)[0]} = $1 WHERE id = ${id} RETURNING *;`, [data[Object.keys(data)[0]]])
+    .then(result => {
+      console.log("reSULT OF UPDATE TABLES ", result
+      );
+      return result.rows[0];
+    });
+};
 
-    return db.query(`UPDATE plant SET status = $1, $2, $3, $4 WHERE id = ${id} RETURNING *;`, [planting.field_id, planting.crop_type, planting.date_fertilized, planting.fertilizer_pesticides_applied])
-      .then(result => {
-        return result.rows[0];
-      });
-  };
-  
 
 
-module.exports = { getPlanting, getHarvest, getPacking, getShipping, deleteHarvest, updatePlanting };
+module.exports = { getPlanting, getHarvest, getPacking, getShipping, deleteHarvest, updateTables };
