@@ -29,6 +29,10 @@ app.use("/packing", packingRoutes);
 app.use("/shipping", shippingRoutes);
 app.use("/summary", summaryRoutes)
 
+app.use('/login', (req, res) => {
+  res.redirect('/')
+});
+
 
 
 app.get("/api/status", (req, res) => {

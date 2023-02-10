@@ -33,4 +33,16 @@ const createPlanting = (planting) => {
 };
 
 
-module.exports = { getPlanting, getPlantingbyId, createPlanting };
+const updatePlanting = (planting) => {
+
+  return db.query(`UPDATE plant SET status = $1, $2, $3, $4 WHERE id = ${id} RETURNING *;`, [planting.field_id, planting.crop_type, planting.date_fertilized, planting.fertilizer_pesticides_applied])
+    .then(result => {
+      return result.rows[0];
+    });
+};
+
+
+
+
+
+module.exports = { getPlanting, getPlantingbyId, createPlanting, updatePlanting };
