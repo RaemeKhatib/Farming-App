@@ -26,7 +26,6 @@ export default function SummaryEditPlanting(props) {
 
   const handleEdit = (event) => {
     event.preventDefault();
-    // debugger;
     axios.put(`/summary/planting/${plant_id}`)
       .then(response => {
         console.log("TRYING TO EDIT ON SUMMARY/EDIT PAGE", response);
