@@ -5,7 +5,7 @@ import axios from "axios";
 import Button from '@mui/material/Button';
 
 
-const CellFormatter = ({ isEdit, value, cellTitle, setData, formName }) => {
+const CellFormatter = ({ isEdit, value, cellTitle, setData, formName, isInt }) => {
   const [textValue, settextValue] = useState(value);
   const { plant_id } = useParams();
   const handleChange = (event) => {
@@ -22,8 +22,10 @@ const CellFormatter = ({ isEdit, value, cellTitle, setData, formName }) => {
   return (
     <>
       {!isEdit && <span> {value} </span>}
-      {isEdit && <TextField value={textValue} onChange={handleChange}
-        onBlur={handleBlur} />}
+      {isEdit && <TextField type={isInt ? "number": "text" } 
+      value={textValue} 
+      onChange={handleChange}
+      onBlur={handleBlur} />}
     </>
   );
 };
@@ -191,7 +193,8 @@ export default function Summary(props) {
                   isEdit={isEdit}
                   cellTitle={"tote_id"}
                   setData={setHarvestData}
-                  formName="harvesting" />
+                  formName="harvesting"
+                  isInt={true}/>
               </TableCell>
             </TableRow>
           </TableHead>
@@ -273,7 +276,8 @@ export default function Summary(props) {
                   isEdit={isEdit}
                   cellTitle={"purchase_order_number"}
                   setData={setShipData}
-                  formName="shipping" />
+                  formName="shipping" 
+                  isInt={true}/>
               </TableCell>
             </TableRow>
             <TableRow>
