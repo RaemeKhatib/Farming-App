@@ -13,10 +13,9 @@ const summaryQueries = require('../db/queries/summary');
 
 router.get("/planting/:id", (req, res) => {
   let id = req.params.id;
-  console.log("WE are hitting summary route for PLANTING", id);
+
   summaryQueries.getPlanting(id)
     .then((data) => {
-      console.log("Summary PLANTING Route", data);
       res.json(data);
     });
 
@@ -24,10 +23,9 @@ router.get("/planting/:id", (req, res) => {
 
 router.get("/harvesting/:id", (req, res) => {
   let id = req.params.id;
-  console.log("WE are hitting summary route ", id);
+ 
   summaryQueries.getHarvest(id)
     .then((data) => {
-      console.log("Summary Route", data);
       res.json(data);
     });
 
@@ -35,10 +33,9 @@ router.get("/harvesting/:id", (req, res) => {
 
 router.get("/packing/:id", (req, res) => {
   let id = req.params.id;
-  console.log("WE are hitting summary route for packing", id);
+ 
   summaryQueries.getPacking(id)
     .then((data) => {
-      console.log("Summary Packing Route", data);
       res.json(data);
     });
 
@@ -47,17 +44,16 @@ router.get("/packing/:id", (req, res) => {
 
 router.get("/shipping/:id", (req, res) => {
   let id = req.params.id;
-  console.log("WE are hitting summary route for SHIPPING", id);
+  
   summaryQueries.getShipping(id)
     .then((data) => {
-      console.log("Summary SHIPPING Route", data);
       res.json(data);
     });
 
 });
 
 router.delete('/', (req, res) => {
-  console.log('THIS IS DELETE SUMMARY', req.body);
+ 
   summaryQueries.deleteHarvest(req.body.summary)
     .then(() => {
       res.status(202).send("Okay");
@@ -67,12 +63,17 @@ router.delete('/', (req, res) => {
 });
 
 
-router.put('/planting/:id', (req, res) => {
+router.put('/:formName/:id', (req, res) => {
   let id = req.params.id;
-  console.log("WE are TRYING TO UPDATE THE PLANT INFO", id);
-  summaryQueries.updatePlanting(req.body)
+  let formName = req.params.formName;
+  let table = "";
+  if (formName === "planting") { table = "plant"; }
+  else if (formName === "harvesting") { table = "harvest"; }
+  else if (formName === "packing") { table = "pack"; }
+  else if (formName === "shipping") { table = "ship"; }
+  console.log("thisis for req.body!!!!", req.body)
+  summaryQueries.updateTables(req.body, id, table)
     .then((data) => {
-      console.log("TRYING UPDATE QUERY IN SUMMARY EDIT SOMETHING", data);
       res.json(data);
     });
 });

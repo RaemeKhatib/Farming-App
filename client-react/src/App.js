@@ -21,7 +21,6 @@ export default function App() {
   const [status, setStatus] = useState({});
   const [state, setState] = useState({
 
-
     plantingItems: [],
     harvestingItems: [],
     packingItems: [],
