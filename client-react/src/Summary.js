@@ -262,28 +262,6 @@ export default function Summary(props) {
       <h3>Shipping</h3>
 <TableContainer component={Paper} style={{ width: 750, height: 300 }}>
   <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
-    <TableHead>
-      <TableRow>
-        <TableCell>Purchase Order Number</TableCell>
-        <TableCell>{shipData.purchase_order_number}</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell>Product Unit</TableCell>
-        <TableCell>{shipData.buyer_name}</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell>Ship Date</TableCell>
-        <TableCell>{shipData.ship_date}</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell>Ship Amount</TableCell>
-        <TableCell>{shipData.ship_amount}</TableCell>
-      </TableRow>
-    </TableHead>
-  </Table>
-</TableContainer>
-<TableContainer component={Paper} style={{ width: 750, height: 300 }}>
-  <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <Button variant='contained' color='success' onClick={() => setisEdit(prev => !prev)}  >

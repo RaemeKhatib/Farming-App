@@ -45,7 +45,7 @@ navigate('/')
           <TextField id="outlined-basic" label="Password" variant="outlined" value={password} onChange={(event) => setPassword(event.target.value)} />
           <VisibilityIcon style={{ marginLeft: 8 }} />
         </div>
-        <Button style={{ backgroundColor: 'green', color: 'white', fontFamily: '"Permanent Marker", cursive' }} variant="submit" onClick={handleSubmit}>Submit</Button>
+        <Button style={{ backgroundColor: 'green', color: 'white', fontFamily: '"Permanent Marker"' }} variant="submit" onClick={handleSubmit}>Submit</Button>
       </Box>
       <div className="login" ></div>
     </>
