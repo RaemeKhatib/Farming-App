@@ -89,7 +89,7 @@ export default function Home({
                 >
                   <TableCell component="th" scope="row">
                     <Link to={`/summary/${plantItem.id}`}>
-                      <Button
+                      <Button style={{ backgroundColor: 'red', color: 'white', fontFamily: '"Permanent Marker", cursive' }}
                         variant='contained' color='primary'
                       >
                         Summary
@@ -103,18 +103,18 @@ export default function Home({
                   
                   <TableCell align="right">
                     <Link to={`/harvest/${plantItem.id}`}>
-                      <Button
+                      <Button style={{ backgroundColor: 'orange', color: 'white', fontFamily: '"Permanent Marker", cursive' }}
                         variant='contained' color='success'
                         disabled={harvestingItems.find(x => x.plant_id == plantItem.id) ? true : false}
                       >
                         Harvest
-                      </Button>
+                      </Button >
                     </Link>
                   </TableCell>
 
                   <TableCell align="right">
                     <Link to={`/packing/${plantItem.id}`}>
-                      <Button
+                      <Button style={{ backgroundColor: 'blue', color: 'white', fontFamily: '"Permanent Marker", cursive' }}
                         variant='contained' color='info'
                         disabled={packingItems.find(x => x.plant_id == plantItem.id) ? true : false}
                       >
@@ -125,7 +125,7 @@ export default function Home({
                   </TableCell>
                   <TableCell align="right">
                     <Link to={`/shipping/${plantItem.id}`}>
-                      <Button
+                      <Button style={{ backgroundColor: 'purple', color: 'white', fontFamily: '"Permanent Marker", cursive' }}
                         variant='contained' color='secondary'
                         disabled={shippingItems.find(x => x.plant_id == plantItem.id) ? true : false}
                       >

@@ -87,7 +87,8 @@ export default function Summary(props) {
   return (
 
     <Box mt={2} >
-      <h1>Summary</h1>   <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleDelete}>Delete All Fields</Button>
+      <h1>Summary</h1>   <Button style={{ backgroundColor: 'red', color: 'white', fontFamily: '"Permanent Marker", cursive' }} variant="submit" onClick={handleDelete}>Delete All Fields</Button>
+
 
       <h3>Plant</h3>
 
@@ -173,31 +174,8 @@ export default function Summary(props) {
         </Table>
       </TableContainer>
       <h3>Shipping</h3>
-
-      <TableContainer component={Paper} style={{ width: 750, height: 300 }}>
+<TableContainer component={Paper} style={{ width: 750, height: 300 }}>
   <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
-    <TableHead>
-      <TableRow>
-        <TableCell>Purchase Order Number</TableCell>
-        <TableCell>{shipData.purchase_order_number}</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell>Product Unit</TableCell>
-        <TableCell>{shipData.buyer_name}</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell>Ship Date</TableCell>
-        <TableCell>{shipData.ship_date}</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell>Ship Amount</TableCell>
-        <TableCell>{shipData.ship_amount}</TableCell>
-      </TableRow>
-    </TableHead>
-  </Table>
-</TableContainer>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow><Button variant='contained' color='success' onClick={() => setisEdit(true)}  >
               Edit Button </Button></TableRow>

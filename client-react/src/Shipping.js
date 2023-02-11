@@ -82,7 +82,7 @@ export default function Shipping(props) {
 
         <TextField id="outlined-basic" label="Ship Amount" variant="outlined" value={ship_amount} onChange={(event) => setShipAmount(event.target.value)} />
 
-        <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleSubmit}>Submit</Button>
+        <Button style={{ backgroundColor: 'purple', color: 'white', fontFamily: '"Permanent Marker", cursive' }} variant="submit" onClick={handleSubmit}>Submit</Button>
 
       </Box>
       <img src="https://media.tenor.com/uLwqbmH1FNsAAAAM/cow-tongue-farm-animals.gif" alt="Organic Farms" />
@@ -90,7 +90,7 @@ export default function Shipping(props) {
 
       <Box mt={4}>
         <TableContainer component={Paper}>
-          <Button variant='contained' color='info'>
+          <Button style={{ backgroundColor: 'blue', color: 'white', fontFamily: '"Permanent Marker", cursive' }} variant='contained' color='info'>
             History of Orders
           </Button>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -126,7 +126,9 @@ export default function Shipping(props) {
           </Table>
         </TableContainer>
       </Box>
+      <div className="login" >
 
+      </div>
     </>
   );
 }

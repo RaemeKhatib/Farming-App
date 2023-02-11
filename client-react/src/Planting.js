@@ -61,7 +61,7 @@ export default function Planting(props) {
 
         <TextField id="outlined-basic" label="Fertilizer Pesticides Applied" variant="outlined" value={fertilizer_pesticides_applied} onChange={(event) => setFertilizerPesticideApplied(event.target.value)} />
 
-        <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleSubmit}>Submit</Button>
+        <Button style={{ backgroundColor: 'pink', color: 'white', fontFamily: '"Permanent Marker", cursive' }} variant="submit" onClick={handleSubmit}>Submit</Button>
 
       </Box>
 

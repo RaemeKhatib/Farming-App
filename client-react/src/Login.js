@@ -6,8 +6,7 @@ import axios from 'axios';
 import './styles.css';
 import PropTypes from 'prop-types';
 import { useNavigate } from "react-router-dom";
-
-
+import VisibilityIcon from '@mui/icons-material/Visibility';
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +30,6 @@ navigate('/')
   // };
 
   return (
-
     <>
       <div className="login-wrapper"><h1>Please Log In</h1></div>
       <Box
@@ -42,19 +40,14 @@ navigate('/')
         noValidate
         autoComplete="off"
       >
-
         <TextField id="outlined-basic" label="Email" variant="outlined" value={email} onChange={(event) => setEmail(event.target.value)} />
-        <TextField id="outlined-basic" label="Password" variant="outlined" value={password} onChange={(event) => setPassword(event.target.value)} />
-        <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleSubmit}>Submit</Button>
-
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <TextField id="outlined-basic" label="Password" variant="outlined" value={password} onChange={(event) => setPassword(event.target.value)} />
+          <VisibilityIcon style={{ marginLeft: 8 }} />
+        </div>
+        <Button style={{ backgroundColor: 'green', color: 'white', fontFamily: '"Permanent Marker", cursive' }} variant="submit" onClick={handleSubmit}>Submit</Button>
       </Box>
-
-      {/* <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleUsers}>Users</Button> */}
-
-      <div className="login" >
-
-      </div>
+      <div className="login" ></div>
     </>
-
   );
 }
