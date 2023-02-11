@@ -13,6 +13,7 @@ const CellFormatter = ({ isEdit, value, cellTitle, setData, formName, isInt }) =
   };
 
   const handleBlur = (event) => {
+    if(textValue.length === 0) return 
     axios.put(`/summary/${formName}/${plant_id}`, { [cellTitle]: textValue }).then((res) => {
       console.log("THIS IS THE RES FOR SOMETHING ", res);
       setData(res.data);
