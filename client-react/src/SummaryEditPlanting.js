@@ -40,7 +40,7 @@ export default function SummaryEditPlanting(props) {
 
       <h3>Plant</h3>
 
-      <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleEdit}>Edit</Button>
+      <Button style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid pink', color: 'pink', textAlign: 'right' }} onClick={handleEdit}>Edit</Button>
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">

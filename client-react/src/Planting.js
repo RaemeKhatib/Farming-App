@@ -45,6 +45,7 @@ export default function Planting(props) {
   return (
 
     <>
+    <h1 className='headerClass'>In Process</h1>
       <Box
         component="form" onSubmit={handleSubmit}
         sx={{
@@ -61,7 +62,7 @@ export default function Planting(props) {
 
         <TextField id="outlined-basic" label="Fertilizer Pesticides Applied" variant="outlined" value={fertilizer_pesticides_applied} onChange={(event) => setFertilizerPesticideApplied(event.target.value)} />
 
-        <Button style={{ backgroundColor: 'pink', color: 'white', fontFamily: '"Permanent Marker", cursive' }} variant="submit" onClick={handleSubmit}>Submit</Button>
+        <Button style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} variant="submit" onClick={handleSubmit}>Submit</Button>
 
       </Box>
 
@@ -99,7 +100,7 @@ export default function Planting(props) {
           </Table>
         </TableContainer>
       </Box>
-      <div className="login" >
+      <div className="login3" >
 
 </div>
     </>

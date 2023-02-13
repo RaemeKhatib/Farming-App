@@ -10,24 +10,18 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
 
   const handleSubmit = async event => {
     event.preventDefault();
     console.log("LOGIN HANDLE SUBMIT CONSOLELOG ", email);
-navigate('/')
-
+    navigate('/')
   };
 
-  // const handleUsers = (event) => {
-  //   event.preventDefault();
-  //   axios.get("/test")
-  //     .then(users => {
-  //       console.log("Form submitted with value: ", users);
-  //     });
-
-  // };
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <>
@@ -42,18 +36,25 @@ navigate('/')
       >
         <TextField id="outlined-basic" label="Email" variant="outlined" value={email} onChange={(event) => setEmail(event.target.value)} />
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <TextField id="outlined-basic" label="Password" variant="outlined" value={password} onChange={(event) => setPassword(event.target.value)} />
-          <VisibilityIcon style={{ marginLeft: 8 }} />
+        <TextField
+          id="outlined-password-input"
+          label="Password"
+          type={showPassword ? "text" : "password"}
+          autoComplete="current-password"
+          variant="outlined"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+          <VisibilityIcon style={{ marginLeft: 8, cursor: 'pointer' }} onClick={togglePasswordVisibility} />
         </div>
         <Button style={{ 
   backgroundColor: 'transparent', 
   border: '2px solid green', 
   color: 'green', 
-  fontFamily: '"Permanent Marker", cursive', 
   borderRadius: '20px', 
 }} variant="submit" onClick={handleSubmit}>Submit</Button>
       </Box>
-      <div className="login" ></div>
+      <div className="login2" ></div>
     </>
   );
 }

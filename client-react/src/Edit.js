@@ -20,7 +20,7 @@ export default function Edit(props) {
     <>
       <p>Edit Page</p>
 
-      <Button style={{ backgroundColor: 'pink' }} variant="submit" onClick={handleEdit}>Edit</Button>
+      <Button style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid green', borderRadius: '20px', color: 'green', textAlign: 'right' }} variant="submit" onClick={handleEdit}>Edit</Button>
 
     </>
 

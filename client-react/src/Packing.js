@@ -87,8 +87,8 @@ export default function packing(props) {
 
         <Button style={{ 
   backgroundColor: 'transparent', 
-  border: '2px solid blue', 
-  color: 'blue', 
+  border: '2px solid green', 
+  color: 'green', 
   fontFamily: '"Permanent Marker", cursive', 
   borderRadius: '20px', 
 }} variant="submit" onClick={handleSubmit}>
