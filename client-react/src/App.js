@@ -8,12 +8,11 @@ import Shipping from 'Shipping';
 import Planting from 'Planting';
 import Summary from 'Summary';
 import Login from 'Login';
-import Edit from 'Edit';
+
 
 import { useEffect, useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import logo from './images/organicfarms.jpg';
-import AgricultureOutlinedIcon from '@mui/icons-material/AgricultureOutlined';
 
 export default function App() {
 
@@ -65,9 +64,8 @@ export default function App() {
 
     axios.get('/shipping')
       .then((res) => {
-        console.log('shipping', res.data);
-        setState(prev => ({ ...prev, shippingItems: res.data })); // just update shippingItems and leave plantingItems, harvestingItems, the same
-        // setShippingItems(res.data);
+
+        setState(prev => ({ ...prev, shippingItems: res.data })); // just 
       })
       .catch((err) => {
         console.log(err.message);
@@ -108,27 +106,24 @@ export default function App() {
               addItemToState={addItemToState}
             />} />
           <Route path="/packing/:plant_id" element={
-          <Packing
-            plantingItems={state.plantingItems}
-            addItemToState={addItemToState} />} />
+            <Packing
+              plantingItems={state.plantingItems}
+              addItemToState={addItemToState} />} />
           <Route path="/shipping/:plant_id" element={
-          <Shipping
-            plantingItems={state.plantingItems}
-            addItemToState={addItemToState} />} />
+            <Shipping
+              plantingItems={state.plantingItems}
+              addItemToState={addItemToState} />} />
           <Route path="/login" element={<Login />} />
-  
+
           <Route path="/summary/:plant_id" element={<Summary
-           setState={setState}/>} />
-           <Route path="/edit" element={<Edit />} />
+            setState={setState} />} />
 
         </Routes>
       </div>
 
-        {/* <img src={logo} /> */}
-        
-      </div>
+    </div>
 
 
-    
-  )
+
+  );
 }

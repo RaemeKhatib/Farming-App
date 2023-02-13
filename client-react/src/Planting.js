@@ -3,7 +3,6 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 
 
@@ -36,16 +35,16 @@ export default function Planting(props) {
     }).then(response => {
       console.log("Krista was HERE!!!!");
       props.addItemToState("plantingItems", response.data);
-      setListOfPlants((prev) => [...prev, response.data] );
+      setListOfPlants((prev) => [...prev, response.data]);
       navigate(`/`);
     });
-  }
+  };
 
 
   return (
 
     <>
-    
+
       <Box
         component="form" onSubmit={handleSubmit}
         sx={{
@@ -63,47 +62,14 @@ export default function Planting(props) {
 
         <TextField id="outlined-basic" label="Fertilizer Pesticides Applied" variant="outlined" value={fertilizer_pesticides_applied} onChange={(event) => setFertilizerPesticideApplied(event.target.value)} />
 
-        <Button style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} variant="submit" onClick={handleSubmit}>Submit</Button>
+        <Button style={{ backgroundColor: 'transparent', borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} variant="submit" onClick={handleSubmit}>Submit</Button>
 
       </Box>
 
 
-      <Box mt={4}>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Field ID</TableCell>
-                <TableCell align="right">Crop Type</TableCell>
-                <TableCell align="right">Date Fertilized</TableCell>
-                <TableCell align="right">Type of Fertilizer</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {listOfPlants.map((row) => (
-                <TableRow
-                  key={row.id}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {row.id}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {row.field_id}
-                  </TableCell>
-                  <TableCell align="right">{row.crop_type}</TableCell>
-                  <TableCell align="right">{row.date_fertilized}</TableCell>
-                  <TableCell align="right">{row.fertilizer_pesticides_applied}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
       <div className="login3" >
 
-</div>
+      </div>
     </>
 
   );

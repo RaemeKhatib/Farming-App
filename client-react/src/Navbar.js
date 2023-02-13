@@ -13,24 +13,17 @@ function CustomLink({ to, children, ...props }) {
 
   );
 }
-// CONDITIONAL RENDER INSIDE THE NAV SO THAT THEY CANT CLICK THINGS WITHOUT AN ID
-// WE NEED TO PUT ID INTO SHUPPING AND PACKING AND GET THE ID FROM SOMEWHERE THAT WE DESIGN FROM STATE -> BECAUSE THIS IS WHERE WE STORE INFO FROM DATABASE SO THIS IS WHERE IS WILL BE ORIGINALLY LOCATED, MOVE STATE INTO APP JS SO IT HAS ACCESS TO HOME AND NAVBAR BECAUSE NO WAT TI PUSH UP THE TREE ONLY CLIMB DOWN.
 
-// REACT IS HANDICAPPED
 
 
 export default function Navbar() {
-  const id = true
+  const id = true;
   return (<nav className="nav">
-    <Link to="/" className="site-title">Farm</Link>
+    <Link to="/" className="site-title">AgriTrace</Link>
     <ul className="nav-layout">
-          <CustomLink to="/planting">Plant</CustomLink>
-        {/* {id && <>
-        <CustomLink to="/harvest">Harvest</CustomLink>  
-        <CustomLink to="/packing">Pack</CustomLink>
-        <CustomLink to="/shipping">Ship</CustomLink>
-        </>} */}
-        <CustomLink to="/login">Login</CustomLink>
+      <CustomLink to="/login">Login</CustomLink>
+      <CustomLink to="/planting">Plant</CustomLink>
+
 
     </ul>
   </nav>

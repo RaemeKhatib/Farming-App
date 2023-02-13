@@ -1,5 +1,4 @@
 import React, { useEffect, Fragment, useState } from "react";
-import axios from "axios";
 import { Box, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { Link } from "react-router-dom";
 import GrassIcon from '@mui/icons-material/Grass';
@@ -14,9 +13,7 @@ export default function Home({
   shippingItems,
   setState
 }) {
-  // const [shippingItems, setShippingItems] = useState([]);
-  // const [plantingItems, setPlantingItems] = useState([]);
-  // const [harvestingItems, setHarvestingItems] = useState([]);
+
 
 
   const plantingDisplay = plantingItems.map(item => {
@@ -62,12 +59,10 @@ export default function Home({
     );
   });
 
-  console.log("planting", plantingItems[0]);
-  console.log('harvesting', harvestingItems[0]);
 
   return (
     <>
-    <h1>Main Page</h1>
+      <h1>Main Page</h1>
       <Box mb={4}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -95,15 +90,15 @@ export default function Home({
                         Summary
                       </Button>
                     </Link>
-                    </TableCell>
-                    
+                  </TableCell>
+
                   <TableCell component="th" scope="row">{plantItem.field_id}
                   </TableCell>
                   <TableCell align="right">{plantItem.crop_type}</TableCell>
-                  
+
                   <TableCell align="right">
                     <Link to={`/harvest/${plantItem.id}`}>
-                      <Button style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid orange', color: 'orange', textAlign: 'right' }}
+                      <Button style={{ backgroundColor: 'transparent', borderRadius: '20px', border: '2px solid orange', color: 'orange', textAlign: 'right' }}
                         variant='contained' color='success'
                         disabled={harvestingItems.find(x => x.plant_id == plantItem.id) ? true : false}
                       >
@@ -114,7 +109,7 @@ export default function Home({
 
                   <TableCell align="right">
                     <Link to={`/packing/${plantItem.id}`}>
-                      <Button style={{ backgroundColor: 'transparent', borderRadius: '20px',border: '2px solid blue', color: 'blue', textAlign: 'right' }}
+                      <Button style={{ backgroundColor: 'transparent', borderRadius: '20px', border: '2px solid blue', color: 'blue', textAlign: 'right' }}
                         variant='contained' color='info'
                         disabled={packingItems.find(x => x.plant_id == plantItem.id) ? true : false}
                       >
@@ -125,7 +120,7 @@ export default function Home({
                   </TableCell>
                   <TableCell align="right">
                     <Link to={`/shipping/${plantItem.id}`}>
-                      <Button style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid purple', color: 'purple', textAlign: 'right' }}
+                      <Button style={{ backgroundColor: 'transparent', borderRadius: '20px', border: '2px solid purple', color: 'purple', textAlign: 'right' }}
                         variant='contained' color='secondary'
                         disabled={shippingItems.find(x => x.plant_id == plantItem.id) ? true : false}
                       >
@@ -141,8 +136,8 @@ export default function Home({
       </Box>
       <div className="login" >
 
-</div>
+      </div>
     </>
   );
-  
+
 }

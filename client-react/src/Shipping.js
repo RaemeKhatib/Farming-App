@@ -1,11 +1,7 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import React, { useState, useEffect } from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -79,9 +75,6 @@ export default function Shipping(props) {
         <Button style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid purple', color: 'purple', textAlign: 'right' }} variant="submit" onClick={handleSubmit}>Submit</Button>
 
       </Box>
-      {/* <img src="https://media.tenor.com/uLwqbmH1FNsAAAAM/cow-tongue-farm-animals.gif" alt="Organic Farms" /> */}
-
-
 
       <div className="login" >
 

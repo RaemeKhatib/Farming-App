@@ -13,7 +13,7 @@ const CellFormatter = ({ isEdit, value, cellTitle, setData, formName, isInt }) =
   };
 
   const handleBlur = (event) => {
-    if(textValue.length === 0) return 
+    if (textValue.length === 0) return;
     axios.put(`/summary/${formName}/${plant_id}`, { [cellTitle]: textValue }).then((res) => {
       console.log("THIS IS THE RES FOR SOMETHING ", res);
       setData(res.data);
@@ -23,10 +23,10 @@ const CellFormatter = ({ isEdit, value, cellTitle, setData, formName, isInt }) =
   return (
     <>
       {!isEdit && <span> {value} </span>}
-      {isEdit && <TextField type={isInt ? "number": "text" } 
-      value={textValue} 
-      onChange={handleChange}
-      onBlur={handleBlur} />}
+      {isEdit && <TextField type={isInt ? "number" : "text"}
+        value={textValue}
+        onChange={handleChange}
+        onBlur={handleBlur} />}
     </>
   );
 };
@@ -103,8 +103,8 @@ export default function Summary(props) {
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table" >
           <TableHead>
             <TableRow>
-            <TableCell align="right" />
-              <Button variant='contained' style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} onClick={() => setisEdit(prev => !prev)}  >
+              <TableCell align="right" />
+              <Button variant='contained' style={{ backgroundColor: 'transparent', borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} onClick={() => setisEdit(prev => !prev)}  >
                 {isEdit ? "Save" : "Edit"}
               </Button>
             </TableRow>
@@ -162,8 +162,8 @@ export default function Summary(props) {
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
           <TableHead>
             <TableRow>
-            <TableCell align="right" />
-              <Button variant='contained' style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} onClick={() => setisEdit(prev => !prev)}  >
+              <TableCell align="right" />
+              <Button variant='contained' style={{ backgroundColor: 'transparent', borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} onClick={() => setisEdit(prev => !prev)}  >
                 {isEdit ? "Save" : "Edit"}
               </Button>
             </TableRow>
@@ -198,7 +198,7 @@ export default function Summary(props) {
                   cellTitle={"tote_id"}
                   setData={setHarvestData}
                   formName="harvesting"
-                  isInt={true}/>
+                  isInt={true} />
               </TableCell>
             </TableRow>
           </TableHead>
@@ -211,8 +211,8 @@ export default function Summary(props) {
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
           <TableHead>
             <TableRow>
-            <TableCell align="right" />
-              <Button variant='contained' style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} onClick={() => setisEdit(prev => !prev)}  >
+              <TableCell align="right" />
+              <Button variant='contained' style={{ backgroundColor: 'transparent', borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} onClick={() => setisEdit(prev => !prev)}  >
                 {isEdit ? "Save" : "Edit"}
               </Button>
             </TableRow>
@@ -268,8 +268,8 @@ export default function Summary(props) {
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
           <TableHead>
             <TableRow>
-            <TableCell align="right" />
-            <Button variant='contained' style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} onClick={() => setisEdit(prev => !prev)}  >
+              <TableCell align="right" />
+              <Button variant='contained' style={{ backgroundColor: 'transparent', borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} onClick={() => setisEdit(prev => !prev)}  >
                 {isEdit ? "Save" : "Edit"}
               </Button>
             </TableRow>
@@ -281,8 +281,8 @@ export default function Summary(props) {
                   isEdit={isEdit}
                   cellTitle={"purchase_order_number"}
                   setData={setShipData}
-                  formName="shipping" 
-                  isInt={true}/>
+                  formName="shipping"
+                  isInt={true} />
               </TableCell>
             </TableRow>
             <TableRow>
@@ -321,7 +321,7 @@ export default function Summary(props) {
           </TableHead>
         </Table>
       </TableContainer>
-      <Button variant='contained' style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid red', color: 'red', textAlign: 'right' }} onClick={handleDelete}>Delete All Fields</Button>
+      <Button variant='contained' style={{ backgroundColor: 'transparent', borderRadius: '20px', border: '2px solid red', color: 'red', textAlign: 'right' }} onClick={handleDelete}>Delete All Fields</Button>
       <div className="login" >
 
       </div>
