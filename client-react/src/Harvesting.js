@@ -18,7 +18,7 @@ export default function Harvesting(props) {
   const [listOfHarvests, setListOfHarvests] = useState([]);
 
   useEffect(() => {
-    console.log('props', props);
+
     axios.get('/harvesting')
       .then((res) => {
         setListOfHarvests(res.data);
@@ -37,7 +37,7 @@ export default function Harvesting(props) {
       }
 
     }).then(response => {
-      console.log("RESPONSE / DATA!!!!", response.data);
+      
       props.addItemToState("harvestingItems", response.data);
       setListOfHarvests((prev) => [...prev, response.data]);
       navigate(`/summary/${plant_id}`);

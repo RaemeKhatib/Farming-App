@@ -62,7 +62,7 @@ export default function Home({
 
   return (
     <>
-      <h1>Main Page</h1>
+      <h1>Dashboard</h1>
       <Box mb={4}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -85,6 +85,7 @@ export default function Home({
                   <TableCell component="th" scope="row">
                     <Link to={`/summary/${plantItem.id}`}>
                       <Button style={{ backgroundColor: 'transparent', borderRadius: '20px', borderRadius: '20px', border: '2px solid red', color: 'red', textAlign: 'right' }}
+                      
                         variant='contained' color='primary'
                       >
                         Summary
