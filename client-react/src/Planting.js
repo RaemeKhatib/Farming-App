@@ -45,7 +45,7 @@ export default function Planting(props) {
   return (
 
     <>
-    <h1 className='headerClass'>In Process</h1>
+    
       <Box
         component="form" onSubmit={handleSubmit}
         sx={{
@@ -54,6 +54,7 @@ export default function Planting(props) {
         noValidate
         autoComplete="off"
       >
+        <h2>Planting</h2>
         <TextField id="outlined-basic" label="Field Identifier" variant="outlined" value={field_id} onChange={(event) => setFieldId(event.target.value)} />
 
         <TextField id="outlined-basic" label="Crop Type" variant="outlined" value={crop_type} onChange={(event) => setCropType(event.target.value)} />

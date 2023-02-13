@@ -65,15 +65,9 @@ export default function Shipping(props) {
         noValidate
         autoComplete="off"
       >
-        {/* <LocalizationProvider dateAdapter={AdapterMoment}>
-          <DesktopDatePicker
-            label="Ship Date"
-            inputFormat="MM/DD/YYYY"
-            value={value}
-            onChange={handleDateChange}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </LocalizationProvider> */}
+                <h2>Shipping</h2>
+
+
         <TextField id="outlined-basic" label="Purchase Order Number" variant="outlined" value={purchase_order_number} onChange={(event) => setPurchaseOrderNumber(event.target.value)} />
 
         <TextField id="outlined-basic" label="Buyer Name" variant="outlined" value={buyer_name} onChange={(event) => setBuyerName(event.target.value)} />

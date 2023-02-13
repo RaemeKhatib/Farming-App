@@ -67,7 +67,7 @@ export default function Home({
 
   return (
     <>
-    <h1 className='headerClass'>Main Page</h1>
+    <h1>Main Page</h1>
       <Box mb={4}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
