@@ -71,7 +71,7 @@ router.put('/:formName/:id', (req, res) => {
   else if (formName === "harvesting") { table = "harvest"; }
   else if (formName === "packing") { table = "pack"; }
   else if (formName === "shipping") { table = "ship"; }
-  console.log("thisis for req.body!!!!", req.body)
+  console.log(" for req.body!!!!", req.body)
   summaryQueries.updateTables(req.body, id, table)
     .then((data) => {
       res.json(data);

@@ -54,8 +54,10 @@ const deleteHarvest = (id) => {
 
 
 const updateTables = (data, id, table) => {
+const stringQuery = `UPDATE ${table} SET ${Object.keys(data)[0]} = $1 WHERE id = ${id} RETURNING *;`
+console.log("STRING QUIERY", stringQuery, "another thing", data[Object.keys(data)[0]])
 
-  return db.query(`UPDATE ${table} SET ${Object.keys(data)[0]} = $1 WHERE id = ${id} RETURNING *;`, [data[Object.keys(data)[0]]])
+  return db.query(stringQuery, [data[Object.keys(data)[0]]])
     .then(result => {
       
       return result.rows[0];

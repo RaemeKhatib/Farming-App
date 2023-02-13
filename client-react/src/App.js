@@ -9,7 +9,7 @@ import Planting from 'Planting';
 import Summary from 'Summary';
 import Login from 'Login';
 import Edit from 'Edit';
-import SummaryEditPlanting from 'SummaryEditPlanting'
+
 import { useEffect, useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import logo from './images/organicfarms.jpg';
@@ -120,9 +120,7 @@ export default function App() {
           <Route path="/summary/:plant_id" element={<Summary
            setState={setState}/>} />
            <Route path="/edit" element={<Edit />} />
-           <Route path="/summary/planting/:plant_id" element={<SummaryEditPlanting  
-           plantingItems={state.plantingItems}
-            addItemToState={addItemToState} />} />
+
         </Routes>
       </div>
 
