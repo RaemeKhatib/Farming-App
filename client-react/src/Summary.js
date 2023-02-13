@@ -94,7 +94,7 @@ export default function Summary(props) {
   return (
 
     <Box mt={2} >
-      <h1>Summary</h1>   <Button style={{ backgroundColor: 'red', color: 'white', fontFamily: '"Permanent Marker", cursive' }} variant="submit" onClick={handleDelete}>Delete All Fields</Button>
+      <h1>Summary</h1>
 
 
       <h3>Plant</h3>
@@ -103,7 +103,8 @@ export default function Summary(props) {
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table" >
           <TableHead>
             <TableRow>
-              <Button variant='contained' color='success' onClick={() => setisEdit(prev => !prev)}  >
+            <TableCell align="right" />
+              <Button variant='contained' style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} onClick={() => setisEdit(prev => !prev)}  >
                 {isEdit ? "Save" : "Edit"}
               </Button>
             </TableRow>
@@ -161,7 +162,8 @@ export default function Summary(props) {
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <Button variant='contained' color='success' onClick={() => setisEdit(prev => !prev)}  >
+            <TableCell align="right" />
+              <Button variant='contained' style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} onClick={() => setisEdit(prev => !prev)}  >
                 {isEdit ? "Save" : "Edit"}
               </Button>
             </TableRow>
@@ -209,7 +211,8 @@ export default function Summary(props) {
         <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <Button variant='contained' color='success' onClick={() => setisEdit(prev => !prev)}  >
+            <TableCell align="right" />
+              <Button variant='contained' style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} onClick={() => setisEdit(prev => !prev)}  >
                 {isEdit ? "Save" : "Edit"}
               </Button>
             </TableRow>
@@ -261,17 +264,18 @@ export default function Summary(props) {
         </Table>
       </TableContainer>
       <h3>Shipping</h3>
-<TableContainer component={Paper} style={{ width: 750, height: 300 }}>
-  <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
+      <TableContainer component={Paper} style={{ width: 750, height: 300 }}>
+        <Table sx={{ minWidth: 100, maxWidth: 1350, textAlign: "right" }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <Button variant='contained' color='success' onClick={() => setisEdit(prev => !prev)}  >
+            <TableCell align="right" />
+            <Button variant='contained' style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid green', color: 'green', textAlign: 'right' }} onClick={() => setisEdit(prev => !prev)}  >
                 {isEdit ? "Save" : "Edit"}
               </Button>
             </TableRow>
             <TableRow>
               <TableCell>Purchase Order Number</TableCell>
-              <TableCell>
+              <TableCell align="right">
                 <CellFormatter
                   value={shipData.purchase_order_number}
                   isEdit={isEdit}
@@ -283,7 +287,7 @@ export default function Summary(props) {
             </TableRow>
             <TableRow>
               <TableCell>Buyer Name</TableCell>
-              <TableCell>
+              <TableCell align="right">
                 <CellFormatter
                   value={shipData.buyer_name}
                   isEdit={isEdit}
@@ -294,7 +298,7 @@ export default function Summary(props) {
             </TableRow>
             <TableRow>
               <TableCell>Ship Date</TableCell>
-              <TableCell>
+              <TableCell align="right">
                 <CellFormatter
                   value={shipData.ship_date}
                   isEdit={isEdit}
@@ -305,7 +309,7 @@ export default function Summary(props) {
             </TableRow>
             <TableRow>
               <TableCell>Ship Amount</TableCell>
-              <TableCell>
+              <TableCell align="right">
                 <CellFormatter
                   value={shipData.ship_amount}
                   isEdit={isEdit}
@@ -317,6 +321,7 @@ export default function Summary(props) {
           </TableHead>
         </Table>
       </TableContainer>
+      <Button variant='contained' style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid red', color: 'red', textAlign: 'right' }} onClick={handleDelete}>Delete All Fields</Button>
       <div className="login" >
 
       </div>

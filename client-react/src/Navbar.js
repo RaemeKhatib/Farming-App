@@ -1,5 +1,4 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
 function CustomLink({ to, children, ...props }) {
   const resolvedPath = useResolvedPath(to);
@@ -23,21 +22,18 @@ function CustomLink({ to, children, ...props }) {
 export default function Navbar() {
   const id = true
   return (<nav className="nav">
-    <Link to="/" className="site-title">
-      Farm
-      <KeyboardDoubleArrowRightIcon style={{ position: "absolute", left: 0, top: 50 }} />
-    </Link>
+    <Link to="/" className="site-title">Farm</Link>
     <ul className="nav-layout">
-      <CustomLink to="/planting">Plant</CustomLink>
-      {/* {id && <>
+          <CustomLink to="/planting">Plant</CustomLink>
+        {/* {id && <>
         <CustomLink to="/harvest">Harvest</CustomLink>  
         <CustomLink to="/packing">Pack</CustomLink>
         <CustomLink to="/shipping">Ship</CustomLink>
         </>} */}
-      <CustomLink to="/login">Login</CustomLink>
+        <CustomLink to="/login">Login</CustomLink>
+
     </ul>
   </nav>
   );
 }
-
 

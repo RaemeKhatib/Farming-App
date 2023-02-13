@@ -65,7 +65,7 @@ export default function Shipping(props) {
         noValidate
         autoComplete="off"
       >
-        <LocalizationProvider dateAdapter={AdapterMoment}>
+        {/* <LocalizationProvider dateAdapter={AdapterMoment}>
           <DesktopDatePicker
             label="Ship Date"
             inputFormat="MM/DD/YYYY"
@@ -73,7 +73,7 @@ export default function Shipping(props) {
             onChange={handleDateChange}
             renderInput={(params) => <TextField {...params} />}
           />
-        </LocalizationProvider>
+        </LocalizationProvider> */}
         <TextField id="outlined-basic" label="Purchase Order Number" variant="outlined" value={purchase_order_number} onChange={(event) => setPurchaseOrderNumber(event.target.value)} />
 
         <TextField id="outlined-basic" label="Buyer Name" variant="outlined" value={buyer_name} onChange={(event) => setBuyerName(event.target.value)} />
@@ -82,50 +82,13 @@ export default function Shipping(props) {
 
         <TextField id="outlined-basic" label="Ship Amount" variant="outlined" value={ship_amount} onChange={(event) => setShipAmount(event.target.value)} />
 
-        <Button style={{ backgroundColor: 'purple', color: 'white', fontFamily: '"Permanent Marker", cursive' }} variant="submit" onClick={handleSubmit}>Submit</Button>
+        <Button style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid purple', color: 'purple', textAlign: 'right' }} variant="submit" onClick={handleSubmit}>Submit</Button>
 
       </Box>
-      <img src="https://media.tenor.com/uLwqbmH1FNsAAAAM/cow-tongue-farm-animals.gif" alt="Organic Farms" />
+      {/* <img src="https://media.tenor.com/uLwqbmH1FNsAAAAM/cow-tongue-farm-animals.gif" alt="Organic Farms" /> */}
 
 
-      <Box mt={4}>
-        <TableContainer component={Paper}>
-          <Button style={{ backgroundColor: 'blue', color: 'white', fontFamily: '"Permanent Marker", cursive' }} variant='contained' color='info'>
-            History of Orders
-          </Button>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Field ID</TableCell>
-                <TableCell align="right">Purchase Order Number</TableCell>
-                <TableCell align="right">Buyer Name</TableCell>
-                <TableCell align="right">Date Shipped</TableCell>
-                <TableCell align="right">Amount Shipped</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {listOfShips.map((row) => (
-                <TableRow
-                  key={row.id}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {row.id}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {row.field_id}
-                  </TableCell>
-                  <TableCell align="right">{row.purchase_order_number}</TableCell>
-                  <TableCell align="right">{row.buyer_name}</TableCell>
-                  <TableCell align="right">{row.ship_date}</TableCell>
-                  <TableCell align="right">{row.ship_amount}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
+
       <div className="login" >
 
       </div>

@@ -88,7 +88,6 @@ export default function App() {
   return (
     <div className="App">
       <div id="topBlackBar">
-        <p></p>
       </div>
       <div className="black-bar"></div>
       <Navbar />

@@ -67,7 +67,7 @@ export default function Home({
 
   return (
     <>
-    
+    <h1 className='headerClass'>Main Page</h1>
       <Box mb={4}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -89,7 +89,7 @@ export default function Home({
                 >
                   <TableCell component="th" scope="row">
                     <Link to={`/summary/${plantItem.id}`}>
-                      <Button style={{ backgroundColor: 'red', color: 'white', fontFamily: '"Permanent Marker", cursive' }}
+                      <Button style={{ backgroundColor: 'transparent', borderRadius: '20px', borderRadius: '20px', border: '2px solid red', color: 'red', textAlign: 'right' }}
                         variant='contained' color='primary'
                       >
                         Summary
@@ -103,7 +103,7 @@ export default function Home({
                   
                   <TableCell align="right">
                     <Link to={`/harvest/${plantItem.id}`}>
-                      <Button style={{ backgroundColor: 'orange', color: 'white', fontFamily: '"Permanent Marker", cursive' }}
+                      <Button style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid orange', color: 'orange', textAlign: 'right' }}
                         variant='contained' color='success'
                         disabled={harvestingItems.find(x => x.plant_id == plantItem.id) ? true : false}
                       >
@@ -114,7 +114,7 @@ export default function Home({
 
                   <TableCell align="right">
                     <Link to={`/packing/${plantItem.id}`}>
-                      <Button style={{ backgroundColor: 'blue', color: 'white', fontFamily: '"Permanent Marker", cursive' }}
+                      <Button style={{ backgroundColor: 'transparent', borderRadius: '20px',border: '2px solid blue', color: 'blue', textAlign: 'right' }}
                         variant='contained' color='info'
                         disabled={packingItems.find(x => x.plant_id == plantItem.id) ? true : false}
                       >
@@ -125,7 +125,7 @@ export default function Home({
                   </TableCell>
                   <TableCell align="right">
                     <Link to={`/shipping/${plantItem.id}`}>
-                      <Button style={{ backgroundColor: 'purple', color: 'white', fontFamily: '"Permanent Marker", cursive' }}
+                      <Button style={{ backgroundColor: 'transparent',borderRadius: '20px', border: '2px solid purple', color: 'purple', textAlign: 'right' }}
                         variant='contained' color='secondary'
                         disabled={shippingItems.find(x => x.plant_id == plantItem.id) ? true : false}
                       >
